@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- ADMIN PANEL --><!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -1132,6 +1132,38 @@
     letter-spacing: 1px;
     white-space: nowrap;
   }
+  .plan-promo-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #e8400c, #ff6b35);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    animation: promoPulse 2s ease-in-out infinite;
+  }
+  @keyframes promoPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,64,12,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(232,64,12,0); }
+  }
+  .plan-price-old {
+    font-size: 14px;
+    color: var(--text-light);
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+  .plan-price-new {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    color: #e8400c;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .plan-price-new span { font-size: 14px; font-weight: 400; color: var(--text-light); }
+
+
 
   .plan-top { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cream); }
   .plan-name { font-size: 13px; color: var(--blue); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px; }
@@ -1225,7 +1257,6 @@
   <a href="#hero" class="nav-logo" onclick="scrollToHero(event)">🦁 口袋營養獅</a>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchSection('team')">團隊介紹</button>
-    <button class="nav-tab" onclick="switchSection('knowledge')">營養知識</button>
   </div>
   <a href="https://lin.ee/6FMaNUT"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0"></a>
 </nav>
@@ -1277,13 +1308,25 @@
       <p class="plans-sub">一期四週，每月訂閱制</p>
       <div class="plans-grid">
         <div class="plan-card">
-          <div class="plan-top"><div class="plan-name" id="plan-name-0">新手入門</div><div class="plan-price" id="plan-price-0">洽詢</div><div class="plan-hint" id="plan-hint-0">適合從未接觸過營養觀念的你</div></div>
+          <div class="plan-top">
+            <div class="plan-promo-badge">🔥 限時特惠</div>
+            <div class="plan-name" id="plan-name-0">新手入門</div>
+            <div class="plan-price-old">NT$1,000</div>
+            <div class="plan-price-new" id="plan-price-0">NT$0 <span>/期</span></div>
+            <div class="plan-hint" id="plan-hint-0">適合從未接觸過營養觀念的你</div>
+          </div>
           <ul class="plan-list" id="plan-items-0"><li>✓ 線上教材提供</li><li>✓ 六大類食物估算寶典</li><li>✓ 飲食/營養問題答復</li><li>✓ 熱量/份數評估</li></ul>
           <a href="https://forms.gle/YPYDrYEWtUGQgPQQA" class="plan-btn" style="display:block;text-align:center;">點我報名</a>
         </div>
         <div class="plan-card featured">
           <div class="plan-badge">最受歡迎</div>
-          <div class="plan-top"><div class="plan-name" id="plan-name-1">全視角初階</div><div class="plan-price" id="plan-price-1">$6,000 <span>/期</span></div><div class="plan-hint" id="plan-hint-1">有明確目標，想增肌減脂、改善健檢紅字</div></div>
+          <div class="plan-top">
+            <div class="plan-promo-badge">🔥 限時特惠</div>
+            <div class="plan-name" id="plan-name-1">全視角初階</div>
+            <div class="plan-price-old">NT$8,000</div>
+            <div class="plan-price-new" id="plan-price-1">NT$6,000 <span>/期</span></div>
+            <div class="plan-hint" id="plan-hint-1">有明確目標，想增肌減脂、改善健檢紅字</div>
+          </div>
           <ul class="plan-list" id="plan-items-1"><li>✓ 線上教材 + 初階課程 4 堂</li><li>✓ 每日飲食拍照回饋</li><li>✓ 每週身體數據追蹤</li><li>✓ 客製化一週菜單</li><li>✓ 兩次視訊/電話諮詢</li></ul>
           <a href="https://forms.gle/gbgDhPuHkxCajY4V7" class="plan-btn line-green" style="display:block;text-align:center;">點我報名</a>
         </div>
@@ -1297,17 +1340,6 @@
     </div>
   </div>
 </div>
-<!-- KNOWLEDGE SECTION -->
-<div class="section" id="section-knowledge">
-  <div class="knowledge-header">
-    <div class="section-label">NUTRITION TIPS</div>
-    <h2 class="section-title" style="color:#fff">營養知識分享</h2>
-    <p class="section-desc">由 Co-Dare 營養師團隊撰寫，破除飲食迷思，讓你吃得聰明又健康。</p>
-  </div>
-  <div class="articles-grid" id="articles-grid">
-    <!-- Rendered by JS -->
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1316,180 +1348,8 @@
   <span id="footer-line-text">有任何問題，歡迎加入官方 LINE 與我們聊聊 🦁</span>
 </footer>
 
-<!-- ARTICLE MODAL -->
-<div class="modal-overlay" id="article-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-content">
-      <span class="modal-cat" id="modal-cat"></span>
-      <h2 class="modal-title" id="modal-title"></h2>
-      <p class="modal-meta" id="modal-meta"></p>
-      <div class="modal-body" id="modal-body"></div>
-    </div>
-  </div>
-</div>
-
-<!-- LOGIN MODAL -->
-<div class="login-overlay" id="login-overlay">
-  <div class="login-box">
-    <div class="login-icon">🔐</div>
-    <h2 class="login-title">後台管理登入</h2>
-    <p class="login-sub">請輸入您的帳號與密碼</p>
-    <div class="login-error" id="login-error">帳號或密碼錯誤，請再試一次</div>
-    <div class="login-field">
-      <label class="login-label">帳號</label>
-      <input class="login-input" id="login-user" type="text" placeholder="輸入帳號" autocomplete="username">
-    </div>
-    <div class="login-field">
-      <label class="login-label">密碼</label>
-      <input class="login-input" id="login-pass" type="password" placeholder="輸入密碼" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <button class="btn-login" onclick="doLogin()">登入</button>
-    <button class="login-cancel" onclick="closeLoginModal()">取消</button>
-  </div>
-</div>
-
-<!-- ADMIN PANEL -->
-<button class="admin-btn" onclick="requireLogin()">
-  ⚙️ 後台編輯
-</button>
-
-<div class="admin-panel" id="admin-panel">
-  <div class="admin-box">
-    <div class="admin-header">
-      <h2>⚙️ 後台管理</h2>
-      <button class="admin-header-close" onclick="closeAdmin()">✕</button>
-    </div>
-    <div class="admin-body">
-      <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchAdminTab('members',this)">👥 成員</button>
-        <button class="admin-tab" onclick="switchAdminTab('page',this)">🏠 團隊頁面</button>
-        <button class="admin-tab" onclick="switchAdminTab('articles',this)">📝 文章</button>
-        <button class="admin-tab" onclick="switchAdminTab('settings',this)">⚙️ 設定</button>
-      </div>
-
-      <!-- MEMBERS TAB -->
-      <div class="admin-section active" id="admin-members">
-        <div class="admin-card-list" id="admin-member-list"></div>
-        <button class="btn-add" onclick="addMember()">＋ 新增成員</button>
-        <button class="btn-save" onclick="saveAll()">儲存所有變更</button>
-      </div>
-
-      <!-- PAGE TAB -->
-      <div class="admin-section" id="admin-page">
-
-        <!-- SECTION 1: 首頁 -->
-        <div class="pg-section-header">🏠 首頁封面</div>
-        <div class="admin-field"><label class="admin-label">大標題（顯示在首頁正中央）</label>
-          <input class="admin-input" id="pg-hero-title" placeholder="你的口袋裡，隨時有營養師"></div>
-        <div class="admin-field"><label class="admin-label">副標題</label>
-          <input class="admin-input" id="pg-hero-sub" placeholder="專業碩士級團隊 · 每日飲食陪伴 · 四週看見改變"></div>
-
-        <!-- SECTION 2: OUR TEAM 頁首 -->
-        <div class="pg-section-header">👥 OUR TEAM 頁首文字</div>
-        <div class="admin-field"><label class="admin-label">標題</label>
-          <input class="admin-input" id="pg-team-title" placeholder="四位碩士級營養師，全方位守護你的健康"></div>
-        <div class="admin-field"><label class="admin-label">說明文字</label>
-          <input class="admin-input" id="pg-team-desc" placeholder="來自台灣師範大學..."></div>
-
-        <!-- SECTION 3: 四大亮點 -->
-        <div class="pg-section-header">🔷 四大亮點卡片</div>
-        <div id="pg-highlights-list"></div>
-
-        <!-- SECTION 4: 專長標籤 -->
-        <div class="pg-section-header">🏷 EXPERTISE 專長標籤</div>
-        <p style="font-size:12px;color:#999;margin-bottom:10px;">每行一個標籤，可在前面加 Emoji</p>
-        <textarea class="admin-textarea" id="pg-tags" style="min-height:160px" placeholder="🔥 增肌減脂&#10;🏋️ 運動營養&#10;🫀 腎臟專科飲食"></textarea>
-
-        <!-- SECTION 5: HOW WE WORK -->
-        <div class="pg-section-header">📋 HOW WE WORK 服務流程</div>
-        <div id="pg-steps-list"></div>
-
-        <!-- SECTION 6: PRICING -->
-        <div class="pg-section-header">💰 PRICING 課程方案</div>
-        <div id="pg-plans-list"></div>
-
-        <button class="btn-save" onclick="saveAll()" style="margin-top:8px;">儲存所有變更</button>
-      </div>
-
-      <!-- ARTICLES TAB -->
-      <div class="admin-section" id="admin-articles">
-        <div class="admin-card-list" id="admin-article-list"></div>
-        <button class="btn-add" onclick="addArticle()">＋ 新增文章</button>
-        <button class="btn-save" onclick="saveAll()">儲存所有變更</button>
-      </div>
-
-      <!-- SETTINGS TAB -->
-      <div class="admin-section" id="admin-settings">
-        <div class="admin-field">
-          <label class="admin-label">LINE 官方帳號連結</label>
-          <input class="admin-input" id="setting-line" type="text" placeholder="https://lin.ee/6FMaNUT">
-        </div>
-        <div class="admin-field">
-          <label class="admin-label">頁腳文字</label>
-          <input class="admin-input" id="setting-footer" type="text">
-        </div>
-        <button class="btn-save" onclick="saveAll()">儲存設定</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="save-toast" id="save-toast">✓ 已儲存！</div>
-
-<!-- CONFIRM DIALOG -->
-<div id="confirm-overlay" style="display:none;position:fixed;inset:0;background:rgba(26,39,68,0.6);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:24px;">
-  <div style="background:#fff;border-radius:16px;padding:32px 28px;max-width:340px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.2);">
-    <div style="font-size:32px;margin-bottom:12px;">⚠️</div>
-    <p id="confirm-msg" style="font-family:'Noto Sans TC',sans-serif;font-size:15px;color:#2c2c2c;margin-bottom:24px;line-height:1.6;"></p>
-    <div style="display:flex;gap:10px;justify-content:center;">
-      <button id="confirm-no" style="flex:1;padding:11px;border:1.5px solid rgba(26,39,68,0.15);background:#fff;border-radius:50px;font-size:14px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;color:#6b6b6b;">取消</button>
-      <button id="confirm-yes" style="flex:1;padding:11px;border:none;background:#c0392b;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;color:#fff;">確定刪除</button>
-    </div>
-  </div>
-</div>
 
 <script>
-// --- ACCOUNTS ---------------------------------------------------
-const ACCOUNTS = {
-  'tingxuan':  'CoDare@ting',
-  'chengfang': 'CoDare@fang',
-  'yutong':    'CoDare@tong',
-  'shengwei':  'CoDare@wei'
-};
-
-let isLoggedIn = false;
-
-function requireLogin() {
-  if (isLoggedIn) { openAdmin(); return; }
-  document.getElementById('login-overlay').classList.add('open');
-  document.getElementById('login-user').value = '';
-  document.getElementById('login-pass').value = '';
-  document.getElementById('login-error').classList.remove('show');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('login-user').focus(), 100);
-}
-
-function doLogin() {
-  const u = document.getElementById('login-user').value.trim();
-  const p = document.getElementById('login-pass').value;
-  if (ACCOUNTS[u] && ACCOUNTS[u] === p) {
-    isLoggedIn = true;
-    document.getElementById('login-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-    openAdmin();
-  } else {
-    document.getElementById('login-error').classList.add('show');
-    document.getElementById('login-pass').value = '';
-    document.getElementById('login-pass').focus();
-  }
-}
-
-function closeLoginModal() {
-  document.getElementById('login-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
 // --- DEFAULT DATA -----------------------------------------------
 const defaultData = {
   lineUrl: 'https://lin.ee/6FMaNUT',
@@ -1557,61 +1417,11 @@ const defaultData = {
       { title: '精華線上教材', desc: '含六大類食物估算寶典，受用終身' }
     ],
     plans: [
-      { name: '新手入門', price: '洽詢', hint: '適合從未接觸過營養觀念的你', items: ['線上教材提供','六大類食物估算寶典','飲食/營養問題答復','熱量/份數評估'] },
-      { name: '全視角初階', price: '$6,000 /期', hint: '有明確目標，想增肌減脂、改善健檢紅字', items: ['線上教材 + 初階課程 4 堂','每日飲食拍照回饋','每週身體數據追蹤','客製化一週菜單','兩次視訊/電話諮詢'] },
+      { name: '新手入門', price: 'NT$0', oldPrice: 'NT$1,000', promo: true, hint: '適合從未接觸過營養觀念的你', items: ['線上教材提供','六大類食物估算寶典','飲食/營養問題答復','熱量/份數評估'] },
+      { name: '全視角初階', price: 'NT$6,000 /期', oldPrice: 'NT$8,000', promo: true, hint: '有明確目標，想增肌減脂、改善健檢紅字', items: ['線上教材 + 初階課程 4 堂','每日飲食拍照回饋','每週身體數據追蹤','客製化一週菜單','兩次視訊/電話諮詢'] },
       { name: '企業團體方案', price: '$5,000 /人/期', hint: '促進健康職場，團體報名享完整課程', items: ['全視角初階全部內容','團體報名優惠價格','企業健康講座可加購'] }
     ]
   },
-  articles: [
-    {
-      id: 1,
-      emoji: '🥗',
-      category: '減脂飲食',
-      title: '減脂不等於挨餓：聰明吃、吃飽還能瘦',
-      excerpt: '很多人以為減脂就是少吃，但這往往最容易失敗。真正有效的減脂，是讓身體獲得足夠營養的同時維持熱量赤字。',
-      author: 'Sealion 亭瑄 營養師',
-      readTime: '4 分鐘',
-      date: '2026-04-10',
-      keywords: '減脂飲食, 不挨餓減重, 均衡飲食減脂, 台灣營養師建議',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>說明為什麼少吃反而瘦不了、均衡飲食的三個關鍵要素，以及簡單好執行的餐盤法則。</div>\n<h2>為什麼少吃反而瘦不了？</h2>\n<p>這是許多人在減重過程中最常犯的錯誤。當熱量攝取過低時，身體會啟動「節能保護機制」，降低基礎代謝率。結果就是：你吃得越少，身體燃燒越慢，最終陷入「吃一點就胖」的惡性循環。</p>\n<p>更糟的是，極端節食往往會同時流失肌肉，讓你的體態變得鬆軟、體脂率反而更高。</p>\n<h2>聰明減脂的三大關鍵</h2>\n<h3>1. 攝取足夠的蛋白質</h3>\n<p>每公斤體重至少攝取 1.2～1.6g 蛋白質。蛋白質不僅幫助保留肌肉、促進代謝，飽足感也比碳水和脂肪更持久。</p>\n<ul>\n<li>雞胸肉（每 100g 約含 31g 蛋白質）</li>\n<li>雞蛋（每顆約含 6g 蛋白質）</li>\n<li>豆腐、毛豆等豆類</li>\n</ul>\n<h3>2. 不需要害怕碳水化合物</h3>\n<p>碳水是大腦和肌肉的主要燃料，完全戒除碳水反而會讓人容易疲憊、思緒不清。建議選擇原型澱粉，例如地瓜、糙米、燕麥，取代精緻白米或麵包。</p>\n<h3>3. 選對好的脂肪</h3>\n<p>酪梨、堅果、橄欖油所含的不飽和脂肪，能幫助脂溶性維生素吸收，也有助於維持飽足感，並不需要完全避開。</p>\n<h2>最簡單的執行工具：餐盤法則</h2>\n<div class=\"seo-highlight\">🍽️ <strong>餐盤比例：</strong>½ 蔬菜 ＋ ¼ 優質蛋白質 ＋ ¼ 原型澱粉<br>不需要計算每一卡路里，只要掌握這個比例，自然能控制熱量又吃得飽足。</div>\n<h2>結論</h2>\n<p>真正有效的減脂飲食，不是一味少吃，而是「吃對」。確保三大營養素均衡攝取，身體才有足夠的燃料代謝脂肪，讓你在不挨餓的狀態下，穩定且持續地達到目標。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Sealion 亭瑄營養師</strong> 撰寫｜臺灣師範大學營養科學碩士</div>"
-    },
-    {
-      id: 2,
-      emoji: '💪',
-      category: '增肌知識',
-      title: '想增肌，你的蛋白質真的吃夠了嗎？',
-      excerpt: '增肌的關鍵除了重訓，飲食中的蛋白質攝取量與時機同樣重要。很多人努力練卻沒成效，問題往往出在吃的這一關。',
-      author: 'Trista 禹彤 營養師',
-      readTime: '5 分鐘',
-      date: '2026-04-14',
-      keywords: '增肌飲食, 蛋白質攝取, 運動營養, 肌肉合成',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>增肌所需蛋白質份量計算、最佳攝取時機，以及台灣常見的優質蛋白質食物來源。</div>\n<h2>增肌需要多少蛋白質？</h2>\n<p>根據運動營養研究建議，增肌期每公斤體重每天應攝取 <strong>1.6～2.2g 蛋白質</strong>。以體重 60kg 的人為例，每天大約需要 96～132g，相當於 4～5 份雞胸肉的量。</p>\n<p>許多人以為自己吃了不少蛋白質，但實際計算後往往只達到建議量的一半。</p>\n<h2>蛋白質攝取時機一樣重要</h2>\n<h3>均勻分配三餐</h3>\n<p>研究顯示，將蛋白質均勻分配在三到四餐，比一次大量攝取的肌肉合成效率更高。建議每餐攝取 25～40g 蛋白質。</p>\n<h3>訓練後的黃金窗口</h3>\n<p>重訓結束後的 2 小時內，肌肉對蛋白質的吸收利用率最高。此時補充含有 20～40g 蛋白質的食物或飲品，能顯著提升肌肉合成效率。</p>\n<h2>台灣常見優質蛋白質食物</h2>\n<ul>\n<li>雞胸肉（100g / 31g 蛋白質）</li>\n<li>雞蛋（每顆 / 6g 蛋白質）</li>\n<li>板豆腐（100g / 8g 蛋白質）</li>\n<li>希臘優格（一杯 / 17g 蛋白質）</li>\n<li>鮭魚（100g / 25g 蛋白質）</li>\n</ul>\n<div class=\"seo-highlight\">🌱 <strong>植物性飲食者的選擇：</strong>大豆蛋白是完全蛋白質，含有所有必需胺基酸，可搭配毛豆、豆腐、豆漿多樣化攝取。</div>\n<h2>結論</h2>\n<p>增肌的成果不只靠訓練，飲食是同等重要的一塊。確認自己每天蛋白質攝取達標，並且善用訓練後的黃金時機補充，才能讓每一次的汗水真正轉化為肌肉。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Trista 禹彤營養師</strong> 撰寫｜CTSSN 運動營養專業認證</div>"
-    },
-    {
-      id: 3,
-      emoji: '🫀',
-      category: '健檢紅字',
-      title: '健檢紅字怎麼吃？三高飲食調整完全指南',
-      excerpt: '血糖、血脂、血壓偏高不代表什麼都不能吃。透過正確的飲食調整，許多人不需要藥物就能讓數值回到正常範圍。',
-      author: 'Samuel 勝崴 營養師',
-      readTime: '6 分鐘',
-      date: '2026-04-17',
-      keywords: '三高飲食, 高血糖飲食, 高血脂怎麼吃, 高血壓得舒飲食',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>分別針對高血糖、高血脂、高血壓提供具體的飲食調整策略，並說明實證最強的得舒飲食原則。</div>\n<h2>高血糖：穩定血糖波動是關鍵</h2>\n<p>血糖管理的核心不是「不吃澱粉」，而是「選對澱粉、搭配得當」，讓血糖緩慢上升、平穩下降，避免劇烈波動。</p>\n<h3>建議這樣吃</h3>\n<ul>\n<li>選擇低 GI 食物：燕麥、地瓜、全麥麵包取代白米飯、白吐司</li>\n<li>每餐先吃蔬菜再吃澱粉，可減緩血糖上升速度約 20%</li>\n<li>減少含糖飲料、甜食、精緻點心</li>\n</ul>\n<h2>高血脂：減少壞脂肪、增加好脂肪</h2>\n<p>血脂偏高的人，飲食重點在於調整脂肪的「種類」，而非完全不吃油。</p>\n<h3>需要減少的食物</h3>\n<ul>\n<li>飽和脂肪：肥肉、豬皮、全脂牛奶、奶油</li>\n<li>反式脂肪：酥皮麵包、油炸食品、某些餅乾</li>\n</ul>\n<h3>需要增加的食物</h3>\n<ul>\n<li>富含 Omega-3：鯖魚、秋刀魚、鮭魚，每週至少 2 次</li>\n<li>可溶性纖維：燕麥、蘋果、豆類，幫助降低 LDL 膽固醇</li>\n</ul>\n<h2>高血壓：得舒飲食（DASH Diet）</h2>\n<div class=\"seo-highlight\">💡 <strong>得舒飲食</strong>是目前實證效果最強的降壓飲食法，研究顯示可降低收縮壓約 8～14 mmHg。</div>\n<p>核心原則：多吃蔬果、選擇低脂乳品、以全穀取代精緻澱粉，每日鈉攝取控制在 2,300mg 以下（約一茶匙鹽）。</p>\n<h2>結論</h2>\n<p>三高的飲食調整不需要大幅改變生活型態，從幾個具體的食物替換開始，配合規律運動，許多人在 3～6 個月內就能看到明顯的數值改善。如果你不確定從哪裡開始，歡迎與我們的營養師預約個別諮詢。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Samuel 勝崴營養師</strong> 撰寫｜醫學中心臨床營養師背景</div>"
-    },
-    {
-      id: 4,
-      emoji: '⚖️',
-      category: '飲食觀念',
-      title: '六大類食物是什麼？一次搞懂均衡飲食份量',
-      excerpt: '台灣的六大類食物分類是建立均衡飲食的基礎，了解每一類的功能和份量，就能輕鬆打造適合自己的飲食計畫。',
-      author: 'Nana 承芳 營養師',
-      readTime: '5 分鐘',
-      date: '2026-04-20',
-      keywords: '六大類食物, 均衡飲食, 台灣飲食指南, 食物份量估算',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>詳細說明台灣六大類食物的定義、每日建議份量，以及不需要秤重的簡易估算技巧。</div>\n<h2>什麼是六大類食物？</h2>\n<p>台灣衛福部將食物依據主要營養素分為六大類，每一類都有其獨特的功能，缺少任何一類都可能造成營養不均衡。</p>\n<h2>六大類食物逐一說明</h2>\n<h3>1. 全穀雜糧類（每日 1.5～4 碗）</h3>\n<p>提供碳水化合物、B 群及膳食纖維。建議以未精製的全穀類為主，例如糙米、燕麥、地瓜、玉米，取代白米和白麵。</p>\n<h3>2. 豆魚蛋肉類（每日 3～8 份）</h3>\n<p>蛋白質的主要來源。建議依序以豆製品、魚類、蛋、禽肉、紅肉為選擇優先順序，盡量減少加工肉品。</p>\n<h3>3. 乳品類（每日 1.5～2 杯）</h3>\n<p>補充鈣質的最佳來源，同時提供優質蛋白質。選擇低脂或脫脂乳品可減少飽和脂肪攝取。</p>\n<h3>4. 蔬菜類（每日 3～5 份）</h3>\n<p>富含維生素、礦物質及膳食纖維。顏色越豐富、種類越多元越好，深綠色蔬菜建議每天都要攝取。</p>\n<h3>5. 水果類（每日 2～4 份）</h3>\n<p>提供天然糖分、維生素 C 及抗氧化物質。選擇當季新鮮水果，避免以果汁取代整顆水果。</p>\n<h3>6. 油脂與堅果種子類（每日 3～7 茶匙油 + 1 份堅果）</h3>\n<p>提供必需脂肪酸和脂溶性維生素，幫助吸收。選擇橄欖油、苦茶油等植物油，每天一小把堅果（約 30g）。</p>\n<h2>不用秤重的份量估算技巧</h2>\n<div class=\"seo-highlight\">🖐️ <strong>手掌估算法：</strong><br>\n• 一份蛋白質 ≈ 手掌大小厚度<br>\n• 一份澱粉 ≈ 一個握拳大小<br>\n• 一份蔬菜 ≈ 煮熟後約半碗<br>\n• 一份水果 ≈ 一個拳頭大小</div>\n<h2>結論</h2>\n<p>均衡飲食不需要複雜的計算，從認識六大類食物開始，確保每天每一類都有攝取，就是建立健康飲食習慣的第一步。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Nana 承芳營養師</strong> 撰寫｜腎臟專科營養師</div>"
-    }
-  ]
 };
 
 // --- STATE ------------------------------------------------------
@@ -1641,349 +1451,15 @@ function renderTeam() {
   `).join('');
 }
 
-function renderArticles() {
-  const grid = document.getElementById('articles-grid');
-  if (!grid) return;
-  grid.innerHTML = data.articles.map((a, i) => `
-    <div class="article-card" onclick="openArticle(${i})">
-      <div class="article-img">${a.emoji}</div>
-      <div class="article-body">
-        <span class="article-cat">${a.category}</span>
-        <h3 class="article-title">${a.title}</h3>
-        <p class="article-excerpt">${a.excerpt}</p>
-        <div class="article-footer">
-          <span class="article-author">✍️ ${a.author}</span>
-          <span class="article-read">${a.readTime || '閱讀全文'} →</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderAdminMembers() {
-  const list = document.getElementById('admin-member-list');
-  list.innerHTML = data.members.map((m, i) => `
-    <div class="admin-member-item" id="admin-m-${i}" onclick="toggleMemberEdit(${i})">
-      <div class="admin-member-info">
-        <span class="admin-member-emoji">${m.emoji}</span>
-        <div>
-          <div class="admin-member-name">${m.name}</div>
-          <div class="admin-member-sub">${m.specialties.join('・')}</div>
-        </div>
-      </div>
-      <button class="btn-delete" onclick="event.stopPropagation(); deleteMember(${i})">刪除</button>
-    </div>
-    <div class="admin-member-edit" id="admin-me-${i}">
-      <div class="admin-row">
-        <div class="admin-field">
-          <label class="admin-label">顯示名稱</label>
-          <input class="admin-input" data-idx="${i}" data-field="name" value="${m.name}" oninput="updateMemberField(this)">
-        </div>
-        <div class="admin-field">
-          <label class="admin-label">真實姓名</label>
-          <input class="admin-input" data-idx="${i}" data-field="fullName" value="${m.fullName}" oninput="updateMemberField(this)">
-        </div>
-      </div>
-      <div class="admin-row">
-        <div class="admin-field">
-          <label class="admin-label">Emoji 圖示</label>
-          <input class="admin-input" data-idx="${i}" data-field="emoji" value="${m.emoji}" oninput="updateMemberField(this)">
-        </div>
-        <div class="admin-field">
-          <label class="admin-label">專長標籤（逗號分隔）</label>
-          <input class="admin-input" data-idx="${i}" data-field="specialties" value="${m.specialties.join(', ')}" oninput="updateMemberField(this)">
-        </div>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">學歷（每行一項）</label>
-        <textarea class="admin-textarea" data-idx="${i}" data-field="edu" oninput="updateMemberField(this)"></textarea>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">經歷（每行一項）</label>
-        <textarea class="admin-textarea" data-idx="${i}" data-field="exp" oninput="updateMemberField(this)"></textarea>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">證照（每行一項）</label>
-        <textarea class="admin-textarea" data-idx="${i}" data-field="certs" oninput="updateMemberField(this)"></textarea>
-      </div>
-    </div>
-  `).join('');
-
-  renderAdminMembersSetValues && setTimeout(renderAdminMembersSetValues, 0);
-}
-
-function updateMemberField(el) {
-  const i = parseInt(el.dataset.idx);
-  const field = el.dataset.field;
-  if (field === 'specialties') {
-    data.members[i].specialties = el.value.split(',').map(s => s.trim()).filter(Boolean);
-  } else if (['edu','exp','certs'].includes(field)) {
-    data.members[i][field] = el.value.split('\n').filter(s => s.trim());
-  } else {
-    data.members[i][field] = el.value;
-  }
-  updateMemberPreview(i);
-}
-
-function renderAdminArticles() {
-  const list = document.getElementById('admin-article-list');
-  list.innerHTML = data.articles.map((a, i) => `
-    <div class="admin-article-item" id="admin-a-${i}" onclick="toggleArticleEdit(${i})">
-      <span class="article-item-icon">${a.emoji}</span>
-      <div class="article-item-info">
-        <div class="article-item-title">${escHtml(a.title)}</div>
-        <div class="article-item-sub">${escHtml(a.category)} · ${escHtml(a.author)}</div>
-      </div>
-      <button class="btn-delete" onclick="event.stopPropagation(); deleteArticle(${i})">刪除</button>
-    </div>
-    <div class="admin-article-edit" id="admin-ae-${i}">
-      <div class="admin-row">
-        <div class="admin-field">
-          <label class="admin-label">Emoji 圖示</label>
-          <input class="admin-input" data-idx="${i}" data-field="emoji">
-        </div>
-        <div class="admin-field">
-          <label class="admin-label">分類</label>
-          <input class="admin-input" data-idx="${i}" data-field="category">
-        </div>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">文章標題</label>
-        <input class="admin-input" data-idx="${i}" data-field="title">
-      </div>
-      <div class="admin-row">
-        <div class="admin-field">
-          <label class="admin-label">作者</label>
-          <input class="admin-input" data-idx="${i}" data-field="author">
-        </div>
-        <div class="admin-field">
-          <label class="admin-label">閱讀時間</label>
-          <input class="admin-input" data-idx="${i}" data-field="readTime">
-        </div>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">SEO 關鍵字（逗號分隔）</label>
-        <input class="admin-input" data-idx="${i}" data-field="keywords">
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">摘要</label>
-        <textarea class="admin-textarea" style="min-height:70px" data-idx="${i}" data-field="excerpt"></textarea>
-      </div>
-      <div class="admin-field">
-        <label class="admin-label">文章內容（HTML 格式）</label>
-        <textarea class="admin-textarea" style="min-height:200px" data-idx="${i}" data-field="content"></textarea>
-      </div>
-    </div>
-  `).join('');
-
-  // 用 JS 直接設值，完全避免 HTML 跳脫問題
-  data.articles.forEach((a, i) => {
-    const edit = document.getElementById('admin-ae-' + i);
-    if (!edit) return;
-    edit.querySelector('[data-field="emoji"]').value       = a.emoji || '';
-    edit.querySelector('[data-field="category"]').value   = a.category || '';
-    edit.querySelector('[data-field="title"]').value      = a.title || '';
-    edit.querySelector('[data-field="author"]').value     = a.author || '';
-    edit.querySelector('[data-field="readTime"]').value   = a.readTime || '';
-    edit.querySelector('[data-field="keywords"]').value   = a.keywords || '';
-    edit.querySelector('[data-field="excerpt"]').value    = a.excerpt || '';
-    edit.querySelector('[data-field="content"]').value    = a.content || '';
-  });
-}
-
-// 同樣用 event delegation 處理 members textarea
-function renderAdminMembersSetValues() {
-  data.members.forEach((m, i) => {
-    const edit = document.getElementById('admin-me-' + i);
-    if (!edit) return;
-    edit.querySelector('[data-field="edu"]').value   = (m.edu || []).join('\n');
-    edit.querySelector('[data-field="exp"]').value   = (m.exp || []).join('\n');
-    edit.querySelector('[data-field="certs"]').value = (m.certs || []).join('\n');
-  });
-}
 
 function escHtml(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function updateArticleField(el) {
-  const i = parseInt(el.dataset.idx);
-  const field = el.dataset.field;
-  data.articles[i][field] = el.value;
-  if (field === 'emoji' || field === 'title') updateArticlePreview(i);
-}
-
-function renderPage() {
-  const p = data.page;
-  if (!p) return;
-
-  // Team header
-  const tt = document.getElementById('team-page-title');
-  if (tt && p.teamTitle) tt.innerHTML = p.teamTitle;
-  const td = document.getElementById('team-page-desc');
-  if (td && p.teamDesc) td.textContent = p.teamDesc;
-
-  // Highlights
-  (p.highlights||[]).forEach((h,i) => {
-    const ic = document.getElementById('hl-icon-'+i);  if(ic) ic.textContent = h.icon;
-    const ti = document.getElementById('hl-title-'+i); if(ti) ti.textContent = h.title;
-    const de = document.getElementById('hl-desc-'+i);  if(de) de.textContent = h.desc;
-  });
-
-  // Tags — 直接逐一更新
-  (p.tags||[]).forEach((t,i) => {
-    const el = document.getElementById('exp-tag-'+i); if(el) el.textContent = t;
-  });
-
-  // Steps
-  (p.steps||[]).forEach((s,i) => {
-    const ti = document.getElementById('step-title-'+i); if(ti) ti.textContent = s.title;
-    const de = document.getElementById('step-desc-'+i);  if(de) de.textContent = s.desc;
-  });
-
-  // Plans
-  (p.plans||[]).forEach((plan,i) => {
-    const na = document.getElementById('plan-name-'+i);  if(na) na.textContent = plan.name;
-    const pr = document.getElementById('plan-price-'+i); if(pr) pr.innerHTML   = plan.price;
-    const hi = document.getElementById('plan-hint-'+i);  if(hi) hi.textContent = plan.hint;
-    const il = document.getElementById('plan-items-'+i);
-    if(il) il.innerHTML = (plan.items||[]).map(it=>`<li>✓ ${it}</li>`).join('');
-  });
-}
-
-
-
-
-function renderAdminPage() {
-  const p = data.page || {};
-
-  // 基本欄位
-  const setVal = (id, val) => { const el = document.getElementById(id); if(el) el.value = val||''; };
-  setVal('pg-hero-title', p.heroTitle);
-  setVal('pg-hero-sub',   p.heroSub);
-  setVal('pg-team-title', p.teamTitle);
-  setVal('pg-team-desc',  p.teamDesc);
-  const tg = document.getElementById('pg-tags');
-  if(tg) tg.value = (p.tags||[]).join('\n');
-
-  // 亮點 — 先建 HTML 骨架（無 value），再用 JS 設值
-  const hl = document.getElementById('pg-highlights-list');
-  if (hl) {
-    hl.innerHTML = (p.highlights||[]).map((h,i) => `
-      <div style="border:1.5px solid rgba(26,39,68,0.1);border-radius:10px;padding:14px;margin-bottom:10px;">
-        <div style="display:grid;grid-template-columns:60px 1fr;gap:8px;margin-bottom:8px;">
-          <div><label class="admin-label">Icon</label>
-            <input class="admin-input" data-pg="hl-icon" data-idx="${i}"></div>
-          <div><label class="admin-label">標題</label>
-            <input class="admin-input" data-pg="hl-title" data-idx="${i}"></div>
-        </div>
-        <label class="admin-label">說明</label>
-        <input class="admin-input" data-pg="hl-desc" data-idx="${i}">
-      </div>`).join('');
-    (p.highlights||[]).forEach((h,i) => {
-      const icon  = hl.querySelector('[data-pg="hl-icon"][data-idx="'+i+'"]');
-      const title = hl.querySelector('[data-pg="hl-title"][data-idx="'+i+'"]');
-      const desc  = hl.querySelector('[data-pg="hl-desc"][data-idx="'+i+'"]');
-      if(icon)  icon.value  = h.icon  || '';
-      if(title) title.value = h.title || '';
-      if(desc)  desc.value  = h.desc  || '';
-    });
-  }
-
-  // 服務步驟
-  const sl = document.getElementById('pg-steps-list');
-  if (sl) {
-    sl.innerHTML = (p.steps||[]).map((s,i) => `
-      <div style="border:1.5px solid rgba(26,39,68,0.1);border-radius:10px;padding:14px;margin-bottom:10px;">
-        <label class="admin-label">步驟 ${i+1} 標題</label>
-        <input class="admin-input" data-pg="step-title" data-idx="${i}" style="margin-bottom:8px;">
-        <label class="admin-label">說明</label>
-        <input class="admin-input" data-pg="step-desc" data-idx="${i}">
-      </div>`).join('');
-    (p.steps||[]).forEach((s,i) => {
-      const ti = sl.querySelector('[data-pg="step-title"][data-idx="'+i+'"]');
-      const de = sl.querySelector('[data-pg="step-desc"][data-idx="'+i+'"]');
-      if(ti) ti.value = s.title || '';
-      if(de) de.value = s.desc  || '';
-    });
-  }
-
-  // 課程方案
-  const pl = document.getElementById('pg-plans-list');
-  if (pl) {
-    pl.innerHTML = (p.plans||[]).map((plan,i) => `
-      <div style="border:1.5px solid rgba(26,39,68,0.1);border-radius:10px;padding:14px;margin-bottom:10px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-          <div><label class="admin-label">方案名稱</label>
-            <input class="admin-input" data-pg="plan-name" data-idx="${i}"></div>
-          <div><label class="admin-label">價格</label>
-            <input class="admin-input" data-pg="plan-price" data-idx="${i}"></div>
-        </div>
-        <label class="admin-label">說明</label>
-        <input class="admin-input" data-pg="plan-hint" data-idx="${i}" style="margin-bottom:8px;">
-        <label class="admin-label">項目（每行一項，不用加 ✓）</label>
-        <textarea class="admin-textarea" data-pg="plan-items" data-idx="${i}" style="min-height:80px"></textarea>
-      </div>`).join('');
-    (p.plans||[]).forEach((plan,i) => {
-      const na = pl.querySelector('[data-pg="plan-name"][data-idx="'+i+'"]');
-      const pr = pl.querySelector('[data-pg="plan-price"][data-idx="'+i+'"]');
-      const hi = pl.querySelector('[data-pg="plan-hint"][data-idx="'+i+'"]');
-      const it = pl.querySelector('[data-pg="plan-items"][data-idx="'+i+'"]');
-      if(na) na.value = plan.name  || '';
-      if(pr) pr.value = plan.price || '';
-      if(hi) hi.value = plan.hint  || '';
-      if(it) it.value = (plan.items||[]).join('\n');
-    });
-  }
-}
-
-function collectPageFromAdmin() {
-  if (!data.page) data.page = {};
-  const p = data.page;
-  const hi = document.getElementById('pg-hero-title'); if(hi) p.heroTitle = hi.value;
-  const hs = document.getElementById('pg-hero-sub'); if(hs) p.heroSub = hs.value;
-  const tt = document.getElementById('pg-team-title'); if(tt) p.teamTitle = tt.value;
-  const td = document.getElementById('pg-team-desc'); if(td) p.teamDesc = td.value;
-  const tg = document.getElementById('pg-tags');
-  if(tg) p.tags = tg.value.split('\n').map(s=>s.trim()).filter(Boolean);
-  // highlights
-  const hl = document.getElementById('pg-highlights-list');
-  if (hl) {
-    (p.highlights||[]).forEach((h,i) => {
-      const ic = hl.querySelector('[data-pg="hl-icon"][data-idx="'+i+'"]'); if(ic) h.icon = ic.value;
-      const ti = hl.querySelector('[data-pg="hl-title"][data-idx="'+i+'"]'); if(ti) h.title = ti.value;
-      const de = hl.querySelector('[data-pg="hl-desc"][data-idx="'+i+'"]'); if(de) h.desc = de.value;
-    });
-  }
-  // steps
-  const sl = document.getElementById('pg-steps-list');
-  if (sl) {
-    (p.steps||[]).forEach((s,i) => {
-      const ti = sl.querySelector('[data-pg="step-title"][data-idx="'+i+'"]'); if(ti) s.title = ti.value;
-      const de = sl.querySelector('[data-pg="step-desc"][data-idx="'+i+'"]'); if(de) s.desc = de.value;
-    });
-  }
-  // plans
-  const pl = document.getElementById('pg-plans-list');
-  if (pl) {
-    (p.plans||[]).forEach((plan,i) => {
-      const na = pl.querySelector('[data-pg="plan-name"][data-idx="'+i+'"]'); if(na) plan.name = na.value;
-      const pr = pl.querySelector('[data-pg="plan-price"][data-idx="'+i+'"]'); if(pr) plan.price = pr.value;
-      const hi2 = pl.querySelector('[data-pg="plan-hint"][data-idx="'+i+'"]'); if(hi2) plan.hint = hi2.value;
-      const it = pl.querySelector('[data-pg="plan-items"][data-idx="'+i+'"]');
-      if(it) plan.items = it.value.split('\n').map(s=>s.trim()).filter(Boolean);
-    });
-  }
-}
-
-function renderSettings() {
-  document.getElementById('setting-line').value = data.lineUrl;
-  document.getElementById('setting-footer').value = data.footerText;
-}
 
 function applySettings() {
-  document.querySelectorAll('[id$="-line-btn"]').forEach(el => el.href = data.lineUrl);
-  document.getElementById('footer-line-text').textContent = data.footerText;
+  const ft = document.getElementById('footer-line-text');
+  if(ft && data && data.footerText) ft.textContent = data.footerText;
 }
 
 // --- NAVIGATION --------------------------------------------------
@@ -1993,7 +1469,6 @@ function switchSection(name) {
   document.getElementById('section-' + name).classList.add('active');
   const tabs = document.querySelectorAll('.nav-tab');
   if (name === 'team') tabs[0].classList.add('active');
-  if (name === 'knowledge') tabs[1].classList.add('active');
 }
 
 function scrollToNav() {
@@ -2005,204 +1480,15 @@ function scrollToHero(e) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- ARTICLE MODAL -----------------------------------------------
-function openArticle(i) {
-  const a = data.articles[i];
-  document.getElementById('modal-cat').textContent = a.category;
-  document.getElementById('modal-title').textContent = a.title;
-  document.getElementById('modal-meta').innerHTML = `✍️ ${a.author}${a.date ? ' &nbsp;·&nbsp; 📅 ' + a.date : ''}${a.readTime ? ' &nbsp;·&nbsp; ⏱ ' + a.readTime : ''}`;
-  document.getElementById('modal-body').innerHTML = a.content;
-  document.getElementById('article-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('article-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('article-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
 
 // --- ADMIN -------------------------------------------------------
-function openAdmin() {
-  renderAdminMembers();
-  renderAdminArticles();
-  renderAdminPage();
-  renderSettings();
-  document.getElementById('admin-panel').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  setupAdminDelegation();
-}
 
-let _delegationSet = false;
-function setupAdminDelegation() {
-  if (_delegationSet) return;
-  _delegationSet = true;
-  // 用 event delegation：監聽整個後台 panel 的 input/change 事件
-  document.getElementById('admin-panel').addEventListener('input', function(e) {
-    const el = e.target;
-    const idx = el.dataset.idx;
-    const field = el.dataset.field;
-    if (idx === undefined || !field) return;
-    const i = parseInt(idx);
-
-    // 判斷是 article 還是 member
-    const articleEdit = el.closest('.admin-article-edit');
-    const memberEdit  = el.closest('.admin-member-edit');
-
-    if (articleEdit) {
-      if (!data.articles[i]) return;
-      data.articles[i][field] = el.value;
-      if (field === 'emoji' || field === 'title') updateArticlePreview(i);
-    } else if (memberEdit) {
-      if (!data.members[i]) return;
-      if (field === 'specialties') {
-        data.members[i].specialties = el.value.split(',').map(s => s.trim()).filter(Boolean);
-      } else if (['edu','exp','certs'].includes(field)) {
-        data.members[i][field] = el.value.split('\n').filter(s => s.trim());
-      } else {
-        data.members[i][field] = el.value;
-      }
-      updateMemberPreview(i);
-    }
-  });
-}
-
-function closeAdmin() {
-  document.getElementById('admin-panel').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function switchAdminTab(tab, btn) {
-  // 找 admin-box 裡的所有 tab 按鈕和 section
-  const box = document.getElementById('admin-panel');
-  if (!box) return;
-  box.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  box.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-
-  const section = document.getElementById('admin-' + tab);
-  if (section) section.classList.add('active');
-  if (btn) btn.classList.add('active');
-
-  // 切換到對應 tab 時重新渲染資料
-  if (tab === 'page')     renderAdminPage();
-  if (tab === 'members')  { renderAdminMembers(); }
-  if (tab === 'articles') { renderAdminArticles(); }
-  if (tab === 'settings') renderSettings();
-}
-
-function toggleMemberEdit(i) {
-  const edit = document.getElementById('admin-me-' + i);
-  const item = document.getElementById('admin-m-' + i);
-  const isOpen = edit.classList.contains('open');
-  document.querySelectorAll('.admin-member-edit').forEach(e => e.classList.remove('open'));
-  document.querySelectorAll('.admin-member-item').forEach(e => e.classList.remove('editing'));
-  if (!isOpen) { edit.classList.add('open'); item.classList.add('editing'); }
-}
-
-function toggleArticleEdit(i) {
-  const edit = document.getElementById('admin-ae-' + i);
-  const item = document.getElementById('admin-a-' + i);
-  const isOpen = edit.classList.contains('open');
-  document.querySelectorAll('.admin-article-edit').forEach(e => e.classList.remove('open'));
-  document.querySelectorAll('.admin-article-item').forEach(e => e.classList.remove('editing'));
-  if (!isOpen) { edit.classList.add('open'); item.classList.add('editing'); }
-}
-
-function updateMemberPreview(i) {
-  const m = data.members[i];
-  const item = document.getElementById('admin-m-' + i);
-  if (item) {
-    item.querySelector('.admin-member-emoji').textContent = m.emoji;
-    item.querySelector('.admin-member-name').textContent = m.name;
-    item.querySelector('.admin-member-sub').textContent = m.specialties.join('・');
-  }
-}
-
-function updateArticlePreview(i) {
-  const a = data.articles[i];
-  const item = document.getElementById('admin-a-' + i);
-  if (item) {
-    item.querySelector('.article-item-icon').textContent = a.emoji;
-    item.querySelector('.article-item-title').textContent = a.title;
-  }
-}
-
-function addMember() {
-  data.members.push({ id: Date.now(), emoji: '🧑‍⚕️', name: '新增營養師', fullName: '姓名', specialties: ['專長'], edu: ['學歷'], exp: ['經歷'], certs: ['證照'] });
-  renderAdminMembers();
-}
-
-function deleteMember(i) {
-  showConfirm('確定要刪除這位成員嗎？', function() {
-    data.members.splice(i, 1);
-    localStorage.setItem('codare_data', JSON.stringify(data));
-    renderAdminMembers();
-    renderTeam();
-    showToast('✓ 已刪除並儲存');
-  });
-}
-
-function addArticle() {
-  data.articles.push({ id: Date.now(), emoji: '📝', category: '分類', title: '文章標題', excerpt: '文章摘要', author: '營養師', readTime: '3 分鐘', date: new Date().toISOString().slice(0,10), keywords: '', content: '<div class="seo-summary">📋 <strong>本文重點：</strong>請填寫摘要</div>\n<h2>大標題</h2>\n<p>段落內容</p>\n<div class="seo-author">✍️ 本文由 <strong>Co-Dare 口袋營養獅</strong> 撰寫</div>' });
-  renderAdminArticles();
-}
-
-function deleteArticle(i) {
-  showConfirm('確定要刪除這篇文章嗎？', function() {
-    data.articles.splice(i, 1);
-    localStorage.setItem('codare_data', JSON.stringify(data));
-    renderAdminArticles();
-    renderArticles();
-    showToast('✓ 已刪除並儲存');
-  });
-}
-
-function saveAll() {
-  const lineVal = document.getElementById('setting-line').value;
-  const footerVal = document.getElementById('setting-footer').value;
-  if (lineVal) data.lineUrl = lineVal;
-  if (footerVal) data.footerText = footerVal;
-  collectPageFromAdmin();
-  localStorage.setItem('codare_data', JSON.stringify(data));
-  renderTeam();
-  renderArticles();
-  renderPage();
-  applySettings();
-  showToast('✓ 已儲存！');
-}
-
-// --- HELPERS ----------------------------------------------------
-function showToast(msg) {
-  const t = document.getElementById('save-toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function showConfirm(msg, onYes) {
-  const overlay = document.getElementById('confirm-overlay');
-  const msgEl   = document.getElementById('confirm-msg');
-  msgEl.textContent = msg;
-  overlay.style.display = 'flex';
-  document.getElementById('confirm-yes').onclick = function() {
-    overlay.style.display = 'none';
-    onYes();
-  };
-  document.getElementById('confirm-no').onclick = function() {
-    overlay.style.display = 'none';
-  };
-}
 
 // --- INIT --------------------------------------------------------
 (function() {
   const local = localStorage.getItem('codare_data');
   if (local) { try { data = JSON.parse(local); } catch(e) {} }
   renderTeam();
-  renderArticles();
-  renderPage();
   applySettings();
 })();
 </script>
