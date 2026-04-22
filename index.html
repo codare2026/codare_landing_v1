@@ -67,6 +67,8 @@
     66% { transform: translate(-10px,20px) scale(0.95); }
   }
 
+
+
   .hero-badge {
     background: rgba(184,203,232,0.15);
     border: 1px solid rgba(184,203,232,0.3);
@@ -228,6 +230,21 @@
 
   .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.08); }
   .nav-tab.active { color: #fff; background: rgba(184,203,232,0.2); }
+
+  .nav-cta {
+    background: #06C755;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .nav-cta:hover { opacity: 0.85; }
 
   /* -- SECTIONS -- */
   .section {
@@ -558,13 +575,359 @@
   .modal-body p { margin-bottom: 16px; }
   .modal-body h3 { font-family: 'Noto Serif TC', serif; color: var(--navy); font-size: 18px; margin: 24px 0 10px; }
 
-  /* -- SEO ARTICLE STYLES -- */
+  /* -- ADMIN PANEL -- */
+  .admin-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(26,39,68,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .admin-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,39,68,0.3); }
+
+  .admin-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(26,39,68,0.7);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .admin-panel.open { display: flex; }
+
+  .admin-box {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 760px;
+    max-height: 88vh;
+    overflow-y: auto;
+    animation: modalIn 0.3s ease;
+  }
+
+  .admin-header {
+    background: var(--navy);
+    padding: 20px 28px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .admin-header h2 {
+    color: #fff;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+  }
+
+  .admin-header-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .admin-header-close:hover { background: rgba(255,255,255,0.25); }
+
+  .admin-body { padding: 32px; }
+
+  .admin-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    background: var(--cream);
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  .admin-tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-light);
+    transition: all 0.2s;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .admin-tab.active { background: #fff; color: var(--navy); font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+  .admin-section { display: none; }
+  .admin-section.active { display: block; }
+
+  .admin-field { margin-bottom: 20px; }
+  .admin-label { font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: 1px; margin-bottom: 6px; display: block; }
+  .admin-input, .admin-textarea, .admin-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(26,39,68,0.12);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text);
+    transition: border-color 0.2s;
+    background: #fff;
+  }
+  .admin-input:focus, .admin-textarea:focus, .admin-select:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+  .admin-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+  .admin-card-list { margin-bottom: 20px; }
+
+  .admin-member-item {
+    border: 1.5px solid rgba(26,39,68,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .admin-member-item:hover { border-color: var(--blue); background: var(--cream); }
+  .admin-member-item.editing { border-color: var(--blue); background: #f0f4fb; }
+
+  .admin-member-info { display: flex; align-items: center; gap: 12px; }
+  .admin-member-emoji { font-size: 24px; }
+  .admin-member-name { font-weight: 600; color: var(--navy); font-size: 15px; }
+  .admin-member-sub { font-size: 12px; color: var(--text-light); }
+
+  .admin-member-edit { display: none; padding: 16px 0 0; }
+  .admin-member-edit.open { display: block; }
+
+  .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .admin-article-item {
+    border: 1.5px solid rgba(26,39,68,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .admin-article-item:hover { border-color: var(--blue); }
+  .admin-article-item.editing { border-color: var(--blue); background: #f0f4fb; }
+
+  .article-item-icon { font-size: 28px; flex-shrink: 0; }
+  .article-item-info { flex: 1; min-width: 0; }
+  .article-item-title { font-weight: 600; color: var(--navy); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .article-item-sub { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+  .admin-article-edit { display: none; padding: 16px 0 0; }
+  .admin-article-edit.open { display: block; }
+
+  .btn-add {
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed rgba(59,95,160,0.3);
+    background: transparent;
+    border-radius: 10px;
+    color: var(--blue);
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+  }
+  .btn-add:hover { border-color: var(--blue); background: var(--tag-bg); }
+
+  .pg-section-header {
+    background: var(--navy);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin: 24px 0 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+
+  .btn-save {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: opacity 0.2s;
+    width: 100%;
+    letter-spacing: 1px;
+  }
+  .btn-save:hover { opacity: 0.85; }
+
+  .btn-delete {
+    background: #fee;
+    color: #c0392b;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-delete:hover { background: #fdd; }
+
+  .save-toast {
+    position: fixed;
+    bottom: 90px;
+    right: 28px;
+    background: #2ecc71;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    z-index: 400;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+    pointer-events: none;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .save-toast.show { opacity: 1; transform: translateY(0); }
+
+  /* -- LOGIN MODAL -- */
+  .login-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,39,68,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 350;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-overlay.open { display: flex; }
+
+  .login-box {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 380px;
+    padding: 40px 36px;
+    animation: modalIn 0.3s ease;
+    text-align: center;
+  }
+
+  .login-icon { font-size: 36px; margin-bottom: 16px; }
+
+  .login-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .login-sub {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 28px;
+  }
+
+  .login-field { margin-bottom: 14px; text-align: left; }
+  .login-label { font-size: 11px; font-weight: 600; color: var(--navy); letter-spacing: 1px; margin-bottom: 6px; display: block; }
+  .login-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(26,39,68,0.15);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .login-input:focus { outline: none; border-color: var(--blue); }
+
+  .login-error {
+    background: #fff0f0;
+    color: #c0392b;
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: none;
+    text-align: left;
+  }
+  .login-error.show { display: block; }
+
+  .btn-login {
+    width: 100%;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: opacity 0.2s;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .btn-login:hover { opacity: 0.85; }
+
+  .login-cancel {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-light);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    text-decoration: underline;
+  }
+  .login-cancel:hover { color: var(--navy); }
+
+  /* -- SEO ARTICLE -- */
   .modal-body h2 { font-family: 'Noto Serif TC', serif; color: var(--navy); font-size: 20px; margin: 28px 0 10px; padding-bottom: 8px; border-bottom: 2px solid var(--cream); }
+  .modal-body h3 { font-family: 'Noto Serif TC', serif; color: var(--navy); font-size: 17px; margin: 22px 0 8px; }
+  .modal-body p { margin-bottom: 14px; }
   .modal-body ul, .modal-body ol { padding-left: 20px; margin-bottom: 14px; }
   .modal-body li { margin-bottom: 6px; line-height: 1.8; }
   .modal-body .seo-summary { background: var(--cream); border-left: 4px solid var(--blue); padding: 16px 20px; border-radius: 0 10px 10px 0; margin-bottom: 24px; font-size: 14px; color: var(--text-light); line-height: 1.8; }
   .modal-body .seo-highlight { background: #fffbf0; border: 1px solid rgba(201,168,76,0.3); padding: 14px 18px; border-radius: 10px; margin: 16px 0; font-size: 14px; }
   .modal-body .seo-author { display: flex; align-items: center; gap: 10px; background: var(--cream); padding: 14px 18px; border-radius: 10px; margin-top: 28px; font-size: 13px; color: var(--text-light); }
+
 
   /* -- ABOUT HIGHLIGHTS -- */
   .about-highlights {
@@ -682,520 +1045,3 @@
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    transition: all 0.2s;
-    backdrop-filter: blur(8px);
-  }
-  .feature-item:hover { background: #fff; border-color: rgba(74,127,212,0.3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(45,90,171,0.1); }
-
-  .feature-num {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--blue2);
-    opacity: 0.6;
-    flex-shrink: 0;
-    line-height: 1;
-    margin-top: 2px;
-  }
-
-  .feature-text strong {
-    display: block;
-    color: var(--navy);
-    font-size: 15px;
-    margin-bottom: 6px;
-  }
-
-  .feature-text span {
-    color: var(--text-light);
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  /* -- PLANS -- */
-  .plans-section {
-    padding: 80px 24px 80px;
-    text-align: center;
-    background: linear-gradient(180deg, #0f1f42 0%, #1a3260 60%, #0f1f42 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .plans-section::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 70px;
-    background: linear-gradient(170deg, #f0f5ff 0%, #e0ecff 100%);
-    clip-path: ellipse(55% 100% at 50% 0%);
-  }
-  .plans-section::after {
-    content: '';
-    position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 300px; border-radius: 50%;
-    background: rgba(74,127,212,0.08);
-  }
-
-  .plans-title { font-family: 'Noto Serif TC', serif; font-size: 28px; color: #fff; margin-bottom: 8px; }
-  .plans-sub { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 40px; }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .plan-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 32px 28px;
-    border: 1.5px solid rgba(26,39,68,0.1);
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: left;
-  }
-  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,39,68,0.1); }
-  .plan-card.featured { border-color: var(--blue); box-shadow: 0 8px 32px rgba(59,95,160,0.15); }
-
-  .plan-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--blue);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 16px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-
-  .plan-top { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cream); }
-  .plan-name { font-size: 13px; color: var(--blue); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px; }
-  .plan-price { font-family: 'Noto Serif TC', serif; font-size: 28px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
-  .plan-price span { font-size: 14px; font-weight: 400; color: var(--text-light); }
-  .plan-hint { font-size: 13px; color: var(--text-light); line-height: 1.6; }
-
-  .plan-list { list-style: none; margin-bottom: 24px; }
-  .plan-list li { font-size: 14px; color: var(--text); padding: 7px 0; border-bottom: 1px solid rgba(26,39,68,0.05); }
-  .plan-list li:last-child { border-bottom: none; }
-
-  .plan-btn {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 2px solid rgba(26,39,68,0.15);
-    color: var(--navy);
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-  .plan-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .plan-btn.line-green { background: #06C755; color: #fff; border-color: #06C755; }
-  .plan-btn.line-green:hover { background: #05a847; border-color: #05a847; }
-  .plan-card .plan-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-
-  /* -- FOOTER -- */
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-  footer strong { color: rgba(255,255,255,0.8); }
-
-  /* -- ANIMATIONS -- */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.96) translateY(12px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  /* -- RESPONSIVE -- */
-  @media (max-width: 600px) {
-    .nav-tabs { display: none; }
-    .hero h1 { font-size: 30px; }
-    .modal-content { padding: 32px 20px 24px; }
-  }
-</style>
-</head>
-<body>
-
-<section class="hero" id="hero">
-  <div class="hero-blob1"></div>
-  <div class="hero-blob2"></div>
-  <div class="hero-blob3"></div>
-  <div class="hero-badge">CO-DARE 口袋營養獅</div>
-  <h1 id="hero-title-el">你的口袋裡，<br><span>隨時有營養師</span></h1>
-  <p class="hero-sub" id="hero-sub-el">專業碩士級團隊 · 每日飲食陪伴 · 四週看見改變</p>
-  <div class="hero-cta">
-    <a href="https://lin.ee/6FMaNUT" class="btn-line-hero" id="line-btn-hero"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="white"/><path d="M12 4C7.582 4 4 7.2 4 11.167c0 3.058 1.97 5.703 4.92 6.9.213.077.178.214.133.408l-.215.8c-.033.124-.124.485.428.264C11.1 18.558 15.7 15.56 17.23 13.833h-.01C18.49 12.716 20 11.05 20 11.167 20 7.2 16.418 4 12 4z" fill="#06C755"/><path d="M15.5 13h-2a.25.25 0 0 1-.25-.25V9.25c0-.138.112-.25.25-.25h.5c.138 0 .25.112.25.25v3h1.25c.138 0 .25.112.25.25v.5a.25.25 0 0 1-.25.25zm-3.5 0h-.5a.25.25 0 0 1-.25-.25V9.25c0-.138.112-.25.25-.25h.5c.138 0 .25.112.25.25v3.5a.25.25 0 0 1-.25.25zm-1.75 0h-.312a.25.25 0 0 1-.2-.1L8.5 10.9v1.85a.25.25 0 0 1-.25.25H7.75a.25.25 0 0 1-.25-.25V9.25C7.5 9.112 7.612 9 7.75 9h.313c.08 0 .155.038.2.1L9.5 11.1V9.25c0-.138.112-.25.25-.25h.5c.138 0 .25.112.25.25v3.5a.25.25 0 0 1-.25.25zm5.25 0h-2a.25.25 0 0 1-.25-.25V9.25C13.25 9.112 13.362 9 13.5 9H15.5c.138 0 .25.112.25.25v.5a.25.25 0 0 1-.25.25H14v.75h1.5c.138 0 .25.112.25.25v.5a.25.25 0 0 1-.25.25H14v.75h1.5c.138 0 .25.112.25.25v.5a.25.25 0 0 1-.25.25z" fill="white"/></svg>加入 LINE 好友</a>
-    <button class="btn-secondary" onclick="switchSection('team'); scrollToNav()">認識我們的團隊</button>
-    <button class="btn-secondary" onclick="switchSection('team'); setTimeout(()=>{ const el=document.getElementById('pricing-section'); if(el) el.scrollIntoView({behavior:'smooth'}); },50)">課程方案</button>
-  </div>
-</section>
-
-<nav id="main-nav">
-  <a href="#hero" class="nav-logo" onclick="scrollToHero(event)">🦁 口袋營養獅</a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchSection('team')">團隊介紹</button>
-    <button class="nav-tab" onclick="switchSection('knowledge')">營養知識</button>
-  </div>
-  <a href="https://lin.ee/6FMaNUT" id="line-btn-nav"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0"></a>
-</nav>
-
-<div class="section active" id="section-team">
-  <div class="team-header">
-    <div class="section-label">OUR TEAM</div>
-    <h2 class="section-title" id="team-page-title">四位碩士級營養師，<br>全方位守護你的健康</h2>
-    <p class="section-desc" id="team-page-desc">來自台灣師範大學、中山醫學大學、嘉南藥理大學、中國醫藥大學，橫跨臨床、增肌減脂、運動營養、腎臟專科等領域。</p>
-  </div>
-  
-  <div id="team-dynamic-content">
-    </div>
-</div>
-
-<div class="section" id="section-knowledge">
-  <div class="knowledge-header">
-    <div class="section-label">NUTRITION TIPS</div>
-    <h2 class="section-title" style="color:#fff">營養知識分享</h2>
-    <p class="section-desc">由 Co-Dare 營養師團隊撰寫，破除飲食迷思，讓你吃得聰明又健康。</p>
-  </div>
-  <div class="articles-grid" id="articles-grid">
-    </div>
-</div>
-
-<footer>
-  <strong>Co-Dare 口袋營養獅</strong><br>
-  專業碩士級營養師團隊 · 線上飲食諮詢服務<br>
-  <span id="footer-line-text">有任何問題，歡迎加入官方 LINE 與我們聊聊 🦁</span>
-</footer>
-
-<div class="modal-overlay" id="article-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-content">
-      <span class="modal-cat" id="modal-cat"></span>
-      <h2 class="modal-title" id="modal-title"></h2>
-      <p class="modal-meta" id="modal-meta"></p>
-      <div class="modal-body" id="modal-body"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-// =========================================================================
-// ⚠️ 網頁內容資料庫 (未來要修改文字、方案、文章、成員，請直接在這裡面改！) ⚠️
-// 修改完畢後，將整個 index.html 檔案上傳到 GitHub 取代原本的檔案即可生效。
-// =========================================================================
-const defaultData = {
-  lineUrl: 'https://lin.ee/6FMaNUT',
-  footerText: '有任何問題，歡迎加入官方 LINE 與我們聊聊 🦁',
-  members: [
-    {
-      id: 1,
-      emoji: '🦭',
-      name: 'Sealion 亭瑄',
-      fullName: '陳亭瑄',
-      specialties: ['增肌減脂', '保健品諮詢'],
-      edu: ['臺灣師範大學營養科學碩士', '中山醫學大學營養學系'],
-      exp: ['上市生技公司｜保健品開發/產品講師', '線上營養諮詢｜增肌減脂專案管理', '臺師大基礎營養實習課程講師'],
-      certs: ['營養師高考合格', 'HACCP基礎訓練班', '腎臟專科營養師', '丙級中餐烹調技術士']
-    },
-    {
-      id: 2,
-      emoji: '🩺',
-      name: 'Samuel 勝崴',
-      fullName: '許勝崴',
-      specialties: ['臨床營養'],
-      edu: ['臺灣師範大學營養科學碩士', '中山醫學大學營養學系'],
-      exp: ['醫學中心營養師｜門診諮詢/病房照護', 'PEI LEE Nutrication 講師｜國考生理學', '楓杏醫學服務團-澎湖診療 營養師'],
-      certs: ['營養師高考合格', 'HACCP基礎訓練班', '長照共同訓練 Level 1', '臨床教師合格證書']
-    },
-    {
-      id: 3,
-      emoji: '🌿',
-      name: 'Nana 承芳',
-      fullName: '何承芳',
-      specialties: ['增肌減脂', '腎臟專科'],
-      edu: ['臺灣師範大學營養科學碩士', '嘉南藥理大學保健營養系'],
-      exp: ['高考營養師探花', '醫學減重診所｜減重與三高慢性病諮詢', '臺師大基礎營養實習課程講師'],
-      certs: ['營養師高考合格', '腎臟專科營養師', 'HACCP基礎/進階訓練班', '丙級中餐烹調技術士']
-    },
-    {
-      id: 4,
-      emoji: '🏋️',
-      name: 'Trista 禹彤',
-      fullName: '林禹彤',
-      specialties: ['增肌減脂', '運動營養', '腎臟專科'],
-      edu: ['臺灣師範大學營養科學碩士', '中國醫藥大學營養學系'],
-      exp: ['自媒體 IG｜衛教短影音與視覺企劃', '品牌合作營養師｜Quick Balance 等', '醫學減重診所｜減重與三高臨床諮詢'],
-      certs: ['營養師高考合格', '腎臟專科營養師', 'CTSSN 運動營養專業認證', 'HACCP基礎訓練班']
-    }
-  ],
-  page: {
-    heroTitle: '你的口袋裡，<br><span>隨時有營養師</span>',
-    teamTitle: '四位碩士級營養師，<br>全方位守護你的健康',
-    teamDesc: '來自台灣師範大學、中山醫學大學、嘉南藥理大學、中國醫藥大學，橫跨臨床、增肌減脂、運動營養、腎臟專科等領域。',
-    heroSub: '專業碩士級團隊 · 每日飲食陪伴 · 四週看見改變',
-    highlights: [
-      { icon: '🎓', title: '碩士級專業團隊', desc: '4 位成員皆完成台灣師範大學營養科學碩士學位，具備深厚學術與實務基礎' },
-      { icon: '🏥', title: '跨領域臨床背景', desc: '涵蓋醫學中心病房照護、門診諮詢、醫學減重診所、增肌減脂等多元臨床經驗' },
-      { icon: '📜', title: '多項專業證照', desc: '全員持有營養師高考合格證照，並具備腎臟專科營養師、CTSSN 運動營養等認證' },
-      { icon: '💬', title: '每日陪伴式諮詢', desc: '不只是月諮詢，而是每天飲食回饋 + 每週數據追蹤，讓你每一餐都有人陪著走' }
-    ],
-    tags: ['🔥 增肌減脂','🏋️ 運動營養','🫀 腎臟專科飲食','📉 三高慢性病調整','💊 保健品諮詢','🥗 均衡飲食規劃','⚖️ 體重管理','🔬 健檢紅字改善'],
-    steps: [
-      { title: '課程開始當天', desc: '確認基本資料、飲食習慣與目標，訂定專屬熱量與份數計畫，提供教材' },
-      { title: '客製化一週菜單', desc: '根據你的飲食喜好與限制，在課程開始一週內提供專屬菜單' },
-      { title: '每日飲食回饋', desc: '平日每天由專屬營養師針對前一天飲食給予建議，即時調整不迷路' },
-      { title: '每週身體數據追蹤', desc: '每週追蹤體重、體脂等數據，確認目標進度，必要時即時調整策略' },
-      { title: '兩次視訊/電話諮詢', desc: '每期第二週與第四週各一次，每次約 30～40 分鐘深度溝通' },
-      { title: '精華線上教材', desc: '含六大類食物估算寶典，受用終身' }
-    ],
-    plans: [
-      { name: '新手入門', price: '洽詢', hint: '適合從未接觸過營養觀念的你', items: ['線上教材提供','六大類食物估算寶典','飲食/營養問題答復','熱量/份數評估'], link: 'https://forms.gle/YPYDrYEWtUGQgPQQA' },
-      { name: '全視角初階', price: '$6,000 /期', hint: '有明確目標，想增肌減脂、改善健檢紅字', items: ['線上教材 + 初階課程 4 堂','每日飲食拍照回饋','每週身體數據追蹤','客製化一週菜單','兩次視訊/電話諮詢'], link: 'https://forms.gle/gbgDhPuHkxCajY4V7' },
-      { name: '企業團體方案', price: '$5,000 /人/期', hint: '促進健康職場，團體報名享完整課程', items: ['全視角初階全部內容','團體報名優惠價格','企業健康講座可加購'], isLineContact: true }
-    ]
-  },
-  articles: [
-    {
-      id: 1,
-      emoji: '🥗',
-      category: '減脂飲食',
-      title: '減脂不等於挨餓：聰明吃、吃飽還能瘦',
-      excerpt: '很多人以為減脂就是少吃，但這往往最容易失敗。真正有效的減脂，是讓身體獲得足夠營養的同時維持熱量赤字。',
-      author: 'Sealion 亭瑄 營養師',
-      readTime: '4 分鐘',
-      date: '2026-04-10',
-      keywords: '減脂飲食, 不挨餓減重, 均衡飲食減脂, 台灣營養師建議',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>說明為什麼少吃反而瘦不了、均衡飲食的三個關鍵要素，以及簡單好執行的餐盤法則。</div>\n<h2>為什麼少吃反而瘦不了？</h2>\n<p>這是許多人在減重過程中最常犯的錯誤。當熱量攝取過低時，身體會啟動「節能保護機制」，降低基礎代謝率。結果就是：你吃得越少，身體燃燒越慢，最終陷入「吃一點就胖」的惡性循環。</p>\n<p>更糟的是，極端節食往往會同時流失肌肉，讓你的體態變得鬆軟、體脂率反而更高。</p>\n<h2>聰明減脂的三大關鍵</h2>\n<h3>1. 攝取足夠的蛋白質</h3>\n<p>每公斤體重至少攝取 1.2～1.6g 蛋白質。蛋白質不僅幫助保留肌肉、促進代謝，飽足感也比碳水和脂肪更持久。</p>\n<ul>\n<li>雞胸肉（每 100g 約含 31g 蛋白質）</li>\n<li>雞蛋（每顆約含 6g 蛋白質）</li>\n<li>豆腐、毛豆等豆類</li>\n</ul>\n<h3>2. 不需要害怕碳水化合物</h3>\n<p>碳水是大腦和肌肉的主要燃料，完全戒除碳水反而會讓人容易疲憊、思緒不清。建議選擇原型澱粉，例如地瓜、糙米、燕麥，取代精緻白米或麵包。</p>\n<h3>3. 選對好的脂肪</h3>\n<p>酪梨、堅果、橄欖油所含的不飽和脂肪，能幫助脂溶性維生素吸收，也有助於維持飽足感，並不需要完全避開。</p>\n<h2>最簡單的執行工具：餐盤法則</h2>\n<div class=\"seo-highlight\">🍽️ <strong>餐盤比例：</strong>½ 蔬菜 ＋ ¼ 優質蛋白質 ＋ ¼ 原型澱粉<br>不需要計算每一卡路里，只要掌握這個比例，自然能控制熱量又吃得飽足。</div>\n<h2>結論</h2>\n<p>真正有效的減脂飲食，不是一味少吃，而是「吃對」。確保三大營養素均衡攝取，身體才有足夠的燃料代謝脂肪，讓你在不挨餓的狀態下，穩定且持續地達到目標。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Sealion 亭瑄營養師</strong> 撰寫｜臺灣師範大學營養科學碩士</div>"
-    },
-    {
-      id: 2,
-      emoji: '💪',
-      category: '增肌知識',
-      title: '想增肌，你的蛋白質真的吃夠了嗎？',
-      excerpt: '增肌的關鍵除了重訓，飲食中的蛋白質攝取量與時機同樣重要。很多人努力練卻沒成效，問題往往出在吃的這一關。',
-      author: 'Trista 禹彤 營養師',
-      readTime: '5 分鐘',
-      date: '2026-04-14',
-      keywords: '增肌飲食, 蛋白質攝取, 運動營養, 肌肉合成',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>增肌所需蛋白質份量計算、最佳攝取時機，以及台灣常見的優質蛋白質食物來源。</div>\n<h2>增肌需要多少蛋白質？</h2>\n<p>根據運動營養研究建議，增肌期每公斤體重每天應攝取 <strong>1.6～2.2g 蛋白質</strong>。以體重 60kg 的人為例，每天大約需要 96～132g，相當於 4～5 份雞胸肉的量。</p>\n<p>許多人以為自己吃了不少蛋白質，但實際計算後往往只達到建議量的一半。</p>\n<h2>蛋白質攝取時機一樣重要</h2>\n<h3>均勻分配三餐</h3>\n<p>研究顯示，將蛋白質均勻分配在三到四餐，比一次大量攝取的肌肉合成效率更高。建議每餐攝取 25～40g 蛋白質。</p>\n<h3>訓練後的黃金窗口</h3>\n<p>重訓結束後的 2 小時內，肌肉對蛋白質的吸收利用率最高。此時補充含有 20～40g 蛋白質的食物或飲品，能顯著提升肌肉合成效率。</p>\n<h2>台灣常見優質蛋白質食物</h2>\n<ul>\n<li>雞胸肉（100g / 31g 蛋白質）</li>\n<li>雞蛋（每顆 / 6g 蛋白質）</li>\n<li>板豆腐（100g / 8g 蛋白質）</li>\n<li>希臘優格（一杯 / 17g 蛋白質）</li>\n<li>鮭魚（100g / 25g 蛋白質）</li>\n</ul>\n<div class=\"seo-highlight\">🌱 <strong>植物性飲食者的選擇：</strong>大豆蛋白是完全蛋白質，含有所有必需胺基酸，可搭配毛豆、豆腐、豆漿多樣化攝取。</div>\n<h2>結論</h2>\n<p>增肌的成果不只靠訓練，飲食是同等重要的一塊。確認自己每天蛋白質攝取達標，並且善用訓練後的黃金時機補充，才能讓每一次的汗水真正轉化為肌肉。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Trista 禹彤營養師</strong> 撰寫｜CTSSN 運動營養專業認證</div>"
-    },
-    {
-      id: 3,
-      emoji: '🫀',
-      category: '健檢紅字',
-      title: '健檢紅字怎麼吃？三高飲食調整完全指南',
-      excerpt: '血糖、血脂、血壓偏高不代表什麼都不能吃。透過正確的飲食調整，許多人不需要藥物就能讓數值回到正常範圍。',
-      author: 'Samuel 勝崴 營養師',
-      readTime: '6 分鐘',
-      date: '2026-04-17',
-      keywords: '三高飲食, 高血糖飲食, 高血脂怎麼吃, 高血壓得舒飲食',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>分別針對高血糖、高血脂、高血壓提供具體的飲食調整策略，並說明實證最強的得舒飲食原則。</div>\n<h2>高血糖：穩定血糖波動是關鍵</h2>\n<p>血糖管理的核心不是「不吃澱粉」，而是「選對澱粉、搭配得當」，讓血糖緩慢上升、平穩下降，避免劇烈波動。</p>\n<h3>建議這樣吃</h3>\n<ul>\n<li>選擇低 GI 食物：燕麥、地瓜、全麥麵包取代白米飯、白吐司</li>\n<li>每餐先吃蔬菜再吃澱粉，可減緩血糖上升速度約 20%</li>\n<li>減少含糖飲料、甜食、精緻點心</li>\n</ul>\n<h2>高血脂：減少壞脂肪、增加好脂肪</h2>\n<p>血脂偏高的人，飲食重點在於調整脂肪的「種類」，而非完全不吃油。</p>\n<h3>需要減少的食物</h3>\n<ul>\n<li>飽和脂肪：肥肉、豬皮、全脂牛奶、奶油</li>\n<li>反式脂肪：酥皮麵包、油炸食品、某些餅乾</li>\n</ul>\n<h3>需要增加的食物</h3>\n<ul>\n<li>富含 Omega-3：鯖魚、秋刀魚、鮭魚，每週至少 2 次</li>\n<li>可溶性纖維：燕麥、蘋果、豆類，幫助降低 LDL 膽固醇</li>\n</ul>\n<h2>高血壓：得舒飲食（DASH Diet）</h2>\n<div class=\"seo-highlight\">💡 <strong>得舒飲食</strong>是目前實證效果最強的降壓飲食法，研究顯示可降低收縮壓約 8～14 mmHg。</div>\n<p>核心原則：多吃蔬果、選擇低脂乳品、以全穀取代精緻澱粉，每日鈉攝取控制在 2,300mg 以下（約一茶匙鹽）。</p>\n<h2>結論</h2>\n<p>三高的飲食調整不需要大幅改變生活型態，從幾個具體的食物替換開始，配合規律運動，許多人在 3～6 個月內就能看到明顯的數值改善。如果你不確定從哪裡開始，歡迎與我們的營養師預約個別諮詢。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Samuel 勝崴營養師</strong> 撰寫｜醫學中心臨床營養師背景</div>"
-    },
-    {
-      id: 4,
-      emoji: '⚖️',
-      category: '飲食觀念',
-      title: '六大類食物是什麼？一次搞懂均衡飲食份量',
-      excerpt: '台灣的六大類食物分類是建立均衡飲食的基礎，了解每一類的功能和份量，就能輕鬆打造適合自己的飲食計畫。',
-      author: 'Nana 承芳 營養師',
-      readTime: '5 分鐘',
-      date: '2026-04-20',
-      keywords: '六大類食物, 均衡飲食, 台灣飲食指南, 食物份量估算',
-      content: "<div class=\"seo-summary\">📋 <strong>本文重點：</strong>詳細說明台灣六大類食物的定義、每日建議份量，以及不需要秤重的簡易估算技巧。</div>\n<h2>什麼是什麼是六大類食物？</h2>\n<p>台灣衛福部將食物依據主要營養素分為六大類，每一類都有其獨特的功能，缺少任何一類都可能造成營養不均衡。</p>\n<h2>六大類食物逐一說明</h2>\n<h3>1. 全穀雜糧類（每日 1.5～4 碗）</h3>\n<p>提供碳水化合物、B 群及膳食纖維。建議以未精製的全穀類為主，例如糙米、燕麥、地瓜、玉米，取代白米和白麵。</p>\n<h3>2. 豆魚蛋肉類（每日 3～8 份）</h3>\n<p>蛋白質的主要來源。建議依序以豆製品、魚類、蛋、禽肉、紅肉為選擇優先順序，盡量減少加工肉品。</p>\n<h3>3. 乳品類（每日 1.5～2 杯）</h3>\n<p>補充鈣質的最佳來源，同時提供優質蛋白質。選擇低脂或脫脂乳品可減少飽和脂肪攝取。</p>\n<h3>4. 蔬菜類（每日 3～5 份）</h3>\n<p>富含維生素、礦物質及膳食纖維。顏色越豐富、種類越多元越好，深綠色蔬菜建議每天都要攝取。</p>\n<h3>5. 水果類（每日 2～4 份）</h3>\n<p>提供天然糖分、維生素 C 及抗氧化物質。選擇當季新鮮水果，避免以果汁取代整顆水果。</p>\n<h3>6. 油脂與堅果種子類（每日 3～7 茶匙油 + 1 份堅果）</h3>\n<p>提供必需脂肪酸和脂溶性維生素，幫助吸收。選擇橄欖油、苦茶油等植物油，每天一小把堅果（約 30g）。</p>\n<h2>不用秤重的份量估算技巧</h2>\n<div class=\"seo-highlight\">🖐️ <strong>手掌估算法：</strong><br>\n• 一份蛋白質 ≈ 手掌大小厚度<br>\n• 一份澱粉 ≈ 一個握拳大小<br>\n• 一份蔬菜 ≈ 煮熟後約半碗<br>\n• 一份水果 ≈ 一個拳頭大小</div>\n<h2>結論</h2>\n<p>均衡飲食不需要複雜的計算，從認識六大類食物開始，確保每天每一類都有攝取，就是建立健康飲食習慣的第一步。</p>\n<div class=\"seo-author\">✍️ 本文由 <strong>Co-Dare 口袋營養獅 · Nana 承芳營養師</strong> 撰寫｜腎臟專科營養師</div>"
-    }
-  ]
-};
-// =========================================================================
-
-// --- 渲染畫面 ---
-function renderAll() {
-  const p = defaultData.page;
-  
-  // 更新靜態文字
-  document.getElementById('hero-title-el').innerHTML = p.heroTitle;
-  document.getElementById('hero-sub-el').textContent = p.heroSub;
-  document.getElementById('team-page-title').innerHTML = p.teamTitle;
-  document.getElementById('team-page-desc').textContent = p.teamDesc;
-  document.getElementById('footer-line-text').textContent = defaultData.footerText;
-  
-  // 更新連結
-  document.querySelectorAll('#line-btn-hero, #line-btn-nav').forEach(el => el.href = defaultData.lineUrl);
-
-  // 生成動態內容
-  let dynamicHTML = '';
-
-  // 1. 亮點區塊
-  dynamicHTML += `<div class="about-highlights">`;
-  p.highlights.forEach(h => {
-    dynamicHTML += `<div class="highlight-card"><div class="highlight-icon">${h.icon}</div><div class="highlight-title">${h.title}</div><div class="highlight-desc">${h.desc}</div></div>`;
-  });
-  dynamicHTML += `</div>`;
-
-  // 2. 團隊區塊
-  dynamicHTML += `<div class="team-grid">`;
-  defaultData.members.forEach(m => {
-    dynamicHTML += `
-      <div class="team-card">
-        <div class="card-top">
-          <div class="card-avatar">${m.emoji}</div>
-          <div class="card-name">${m.name}</div>
-          <div class="card-title-en">${m.fullName} · DIETITIAN</div>
-          <div class="card-tags">${m.specialties.map(s => `<span class="card-tag">${s}</span>`).join('')}</div>
-        </div>
-        <div class="card-body">
-          <div class="card-section-title">學歷</div>
-          <ul class="card-list">${m.edu.map(e => `<li>${e}</li>`).join('')}</ul>
-          <div class="card-section-title">經歷</div>
-          <ul class="card-list">${m.exp.map(e => `<li>${e}</li>`).join('')}</ul>
-          <div class="card-section-title">證照</div>
-          <ul class="card-list">${m.certs.map(c => `<li>${c}</li>`).join('')}</ul>
-        </div>
-      </div>
-    `;
-  });
-  dynamicHTML += `</div>`;
-
-  // 3. 專長標籤
-  dynamicHTML += `
-    <div class="expertise-section">
-      <div class="expertise-inner">
-        <div class="section-label" style="margin-bottom:20px">EXPERTISE</div>
-        <h3 class="expertise-title">我們擅長的領域</h3>
-        <div class="expertise-tags">
-          ${p.tags.map(t => `<span class="exp-tag">${t}</span>`).join('')}
-        </div>
-      </div>
-    </div>`;
-
-  // 4. 服務流程
-  dynamicHTML += `
-    <div class="features-section">
-      <div class="features-inner">
-        <div class="section-label" style="margin-bottom:20px;background:rgba(45,90,171,0.1);color:var(--blue)">HOW WE WORK</div>
-        <h3 class="features-title">我們怎麼陪你改變</h3>
-        <div class="features-grid">
-          ${p.steps.map((s, i) => `
-            <div class="feature-item">
-              <div class="feature-num">0${i+1}</div>
-              <div class="feature-text"><strong>${s.title}</strong><span>${s.desc}</span></div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    </div>`;
-
-  // 5. 課程方案
-  dynamicHTML += `
-    <div class="plans-section" id="pricing-section">
-      <div class="section-label" style="margin-bottom:20px;background:rgba(255,255,255,0.15);color:#fff;">PRICING</div>
-      <h3 class="plans-title">課程方案</h3>
-      <p class="plans-sub">一期四週，每月訂閱制</p>
-      <div class="plans-grid">
-        ${p.plans.map((plan, i) => {
-          let btnHTML = '';
-          if (plan.isLineContact) {
-            btnHTML = `
-              <p style="font-size:13px;color:#6b6b6b;margin-bottom:8px;text-align:center;">加入 LINE 專人聯繫</p>
-              <a href="${defaultData.lineUrl}"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0" style="display:block;margin:0 auto;"></a>
-            `;
-          } else {
-            const btnClass = i === 1 ? 'plan-btn line-green' : 'plan-btn';
-            btnHTML = `<a href="${plan.link || '#'}" class="${btnClass}" style="display:block;text-align:center;">點我報名</a>`;
-          }
-
-          return `
-            <div class="plan-card ${i === 1 ? 'featured' : ''}">
-              ${i === 1 ? '<div class="plan-badge">最受歡迎</div>' : ''}
-              <div class="plan-top"><div class="plan-name">${plan.name}</div><div class="plan-price">${plan.price}</div><div class="plan-hint">${plan.hint}</div></div>
-              <ul class="plan-list">${plan.items.map(it => `<li>✓ ${it}</li>`).join('')}</ul>
-              ${btnHTML}
-            </div>
-          `;
-        }).join('')}
-      </div>
-    </div>`;
-
-  document.getElementById('team-dynamic-content').innerHTML = dynamicHTML;
-
-  // 6. 渲染文章列表
-  const articlesGrid = document.getElementById('articles-grid');
-  articlesGrid.innerHTML = defaultData.articles.map((a, i) => `
-    <div class="article-card" onclick="openArticle(${i})">
-      <div class="article-img">${a.emoji}</div>
-      <div class="article-body">
-        <span class="article-cat">${a.category}</span>
-        <h3 class="article-title">${a.title}</h3>
-        <p class="article-excerpt">${a.excerpt}</p>
-        <div class="article-footer">
-          <span class="article-author">✍️ ${a.author}</span>
-          <span class="article-read">${a.readTime || '閱讀全文'} →</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// --- 互動功能 ---
-function switchSection(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('section-' + name).classList.add('active');
-  const tabs = document.querySelectorAll('.nav-tab');
-  if (name === 'team') tabs[0].classList.add('active');
-  if (name === 'knowledge') tabs[1].classList.add('active');
-}
-
-function scrollToNav() {
-  document.getElementById('main-nav').scrollIntoView({ behavior: 'smooth' });
-}
-
-function scrollToHero(e) {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openArticle(i) {
-  const a = defaultData.articles[i];
-  document.getElementById('modal-cat').textContent = a.category;
-  document.getElementById('modal-title').textContent = a.title;
-  document.getElementById('modal-meta').innerHTML = `✍️ ${a.author}${a.date ? ' &nbsp;·&nbsp; 📅 ' + a.date : ''}${a.readTime ? ' &nbsp;·&nbsp; ⏱ ' + a.readTime : ''}`;
-  document.getElementById('modal-body').innerHTML = a.content;
-  document.getElementById('article-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('article-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('article-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-// 初始化渲染
-renderAll();
-</script>
-</body>
-</html>
