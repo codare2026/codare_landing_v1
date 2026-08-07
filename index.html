@@ -1,788 +1,305 @@
-<!-- ADMIN PANEL --><!DOCTYPE html>
-<html lang="zh-TW">
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Co-Dare 口袋營養獅</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0f1f42;
-    --navy2: #1a3260;
-    --blue: #2d5aab;
-    --blue2: #4a7fd4;
-    --light-blue: #a8c4e8;
-    --sky: #ddeeff;
-    --cream: #f0f5ff;
-    --warm-white: #f8fbff;
-    --gold: #c9a84c;
-    --text: #1a2744;
-    --text-light: #5a6a85;
-    --tag-bg: #e0eaf8;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #f0f5ff;
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  /* -- HERO -- */
-  .hero {
-    background: linear-gradient(145deg, #0a1628 0%, #0f1f42 40%, #1a3260 70%, #1e3d6e 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 60px 24px;
-  }
-  .hero-blob1 {
-    position: absolute; border-radius: 50%; pointer-events: none;
-    width: 500px; height: 500px; top: -100px; right: -100px;
-    background: radial-gradient(circle, rgba(74,127,212,0.25) 0%, transparent 70%);
-    animation: blobFloat 8s ease-in-out infinite;
-  }
-  .hero-blob2 {
-    position: absolute; border-radius: 50%; pointer-events: none;
-    width: 400px; height: 400px; bottom: -80px; left: -80px;
-    background: radial-gradient(circle, rgba(45,90,171,0.3) 0%, transparent 70%);
-    animation: blobFloat 10s ease-in-out infinite reverse;
-  }
-  .hero-blob3 {
-    position: absolute; border-radius: 50%; pointer-events: none;
-    width: 200px; height: 200px; top: 30%; left: 10%;
-    background: radial-gradient(circle, rgba(168,196,232,0.12) 0%, transparent 70%);
-    animation: blobFloat 12s ease-in-out infinite 2s;
-  }
-  @keyframes blobFloat {
-    0%, 100% { transform: translate(0,0) scale(1); }
-    33% { transform: translate(20px,-15px) scale(1.05); }
-    66% { transform: translate(-10px,20px) scale(0.95); }
-  }
-
-  .hero-badge {
-    background: rgba(184,203,232,0.15);
-    border: 1px solid rgba(184,203,232,0.3);
-    color: var(--light-blue);
-    font-size: 13px;
-    letter-spacing: 3px;
-    padding: 8px 20px;
-    border-radius: 40px;
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero h1 {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(48px, 9vw, 96px);
-    color: #fff;
-    text-align: center;
-    line-height: 1.25;
-    margin-bottom: 12px;
-    animation: fadeUp 0.8s 0.1s ease both;
-    letter-spacing: -1px;
-  }
-
-  .hero h1 span { color: var(--light-blue); }
-
-  .hero-sub {
-    color: rgba(255,255,255,0.55);
-    font-size: 16px;
-    letter-spacing: 2px;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .btn-primary {
-    background: #06C755;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 16px 36px;
-    border-radius: 50px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,199,85,0.45); }
-
-  .btn-line-hero {
-    background: #06C755;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 14px 32px;
-    border-radius: 50px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    letter-spacing: 0.5px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    line-height: 1;
-  }
-  .btn-line-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,199,85,0.45); }
-
-  .btn-secondary {
-    background: transparent;
-    color: rgba(255,255,255,0.8);
-    font-size: 15px;
-    padding: 16px 36px;
-    border-radius: 50px;
-    border: 1px solid rgba(255,255,255,0.25);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.3);
-    font-size: 11px;
-    letter-spacing: 2px;
-    animation: fadeUp 1s 0.8s ease both;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-
-  /* -- NAV -- */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,22,40,0.97);
-    backdrop-filter: blur(12px);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .nav-logo {
-    color: #fff;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 16px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-  }
-
-  .nav-tabs { display: flex; gap: 4px; }
-
-  .nav-tab {
-    color: rgba(255,255,255,0.6);
-    font-size: 14px;
-    padding: 8px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-    background: transparent;
-    font-family: 'Noto Sans TC', sans-serif;
-  }
-  .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.08); }
-  .nav-tab.active { color: #fff; background: rgba(184,203,232,0.2); }
-
-  .nav-cta {
-    background: #06C755;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    letter-spacing: 0.5px;
-  }
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* -- SECTIONS -- */
-  .section { display: none; animation: fadeIn 0.4s ease; }
-  .section.active { display: block; }
-
-  /* -- TEAM SECTION -- */
-  .team-header {
-    background: linear-gradient(160deg, #e8f2ff 0%, #d0e4ff 50%, #e8f0ff 100%);
-    padding: 80px 24px 80px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .team-header::before {
-    content: '';
-    position: absolute; top: -60px; right: -60px;
-    width: 300px; height: 300px; border-radius: 50%;
-    background: rgba(74,127,212,0.1);
-    pointer-events: none;
-  }
-  .team-header::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
-    background: var(--warm-white);
-    clip-path: ellipse(55% 100% at 50% 100%);
-    pointer-events: none;
-  }
-
-  .section-label {
-    display: inline-block;
-    background: var(--tag-bg);
-    color: var(--blue);
-    font-size: 12px;
-    letter-spacing: 3px;
-    padding: 6px 16px;
-    border-radius: 40px;
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    color: var(--navy);
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-
-  .section-desc {
-    color: var(--text-light);
-    font-size: 15px;
-    line-height: 1.8;
-    max-width: 560px;
-    margin: 0 auto;
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 24px;
-  }
-
-  .team-card {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 24px rgba(26,39,68,0.07);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(26,39,68,0.06);
-  }
-  .team-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,39,68,0.12); }
-
-  .card-top {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-    padding: 32px 24px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .card-top::before {
-    content: '';
-    position: absolute; top: -30px; right: -30px;
-    width: 120px; height: 120px; border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    pointer-events: none;
-  }
-
-  .card-avatar {
-    width: 72px; height: 72px; border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.3);
-    margin-bottom: 16px;
-    object-fit: cover;
-    background: rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-  }
-
-  .card-name { color: #fff; font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .card-title-en { color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 2px; margin-bottom: 12px; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .card-tag { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 11px; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.5px; }
-  .card-body { padding: 24px; }
-  .card-section-title { font-size: 11px; letter-spacing: 2px; color: var(--blue); font-weight: 600; margin-bottom: 10px; margin-top: 16px; }
-  .card-section-title:first-child { margin-top: 0; }
-  .card-list { list-style: none; }
-  .card-list li { font-size: 13px; color: var(--text-light); padding: 4px 0; padding-left: 14px; position: relative; line-height: 1.6; }
-  .card-list li::before { content: '·'; position: absolute; left: 0; color: var(--blue); font-weight: bold; }
-
-  /* -- ABOUT HIGHLIGHTS -- */
-  .about-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 24px 40px;
-    position: relative;
-  }
-
-  .highlight-card {
-    background: linear-gradient(135deg, #fff 0%, #f5f9ff 100%);
-    border-radius: 20px;
-    padding: 28px 24px;
-    border: 1.5px solid rgba(74,127,212,0.15);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .highlight-card::before {
-    content: '';
-    position: absolute; top: -20px; right: -20px;
-    width: 80px; height: 80px; border-radius: 50%;
-    background: rgba(74,127,212,0.06);
-    pointer-events: none;
-  }
-  .highlight-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(45,90,171,0.15); border-color: rgba(74,127,212,0.35); }
-  .highlight-icon { font-size: 36px; margin-bottom: 14px; }
-  .highlight-title { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--navy); font-weight: 700; margin-bottom: 10px; }
-  .highlight-desc { font-size: 13px; color: var(--text-light); line-height: 1.8; }
-
-  /* -- EXPERTISE -- */
-  .expertise-section {
-    background: linear-gradient(135deg, #0f1f42 0%, #1a3260 50%, #2d5aab 100%);
-    padding: 70px 24px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .expertise-section::before {
-    content: '';
-    position: absolute; top: -80px; left: -80px;
-    width: 350px; height: 350px; border-radius: 50%;
-    background: rgba(74,127,212,0.15);
-    pointer-events: none;
-  }
-  .expertise-section::after {
-    content: '';
-    position: absolute; bottom: -60px; right: -60px;
-    width: 280px; height: 280px; border-radius: 50%;
-    background: rgba(168,196,232,0.1);
-    pointer-events: none;
-  }
-
-  .expertise-inner { max-width: 800px; margin: 0 auto; }
-  .expertise-title { font-family: 'Noto Serif TC', serif; font-size: 26px; color: #fff; margin-bottom: 28px; }
-  .expertise-tags { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .exp-tag {
-    background: rgba(255,255,255,0.12);
-    border: 1.5px solid rgba(255,255,255,0.25);
-    color: #fff; padding: 10px 22px; border-radius: 40px;
-    font-size: 14px; font-weight: 500; transition: all 0.2s; backdrop-filter: blur(4px);
-  }
-  .exp-tag:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
-
-  /* -- FEATURES -- */
-  .features-section {
-    background: linear-gradient(170deg, #f0f5ff 0%, #e0ecff 40%, #d5e7ff 100%);
-    padding: 80px 24px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .features-section::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 60px;
-    background: linear-gradient(135deg, #0f1f42 0%, #1a3260 50%, #2d5aab 100%);
-    clip-path: ellipse(55% 100% at 50% 0%);
-    pointer-events: none;
-  }
-  .features-section::after {
-    content: '';
-    position: absolute; top: -40px; right: 5%;
-    width: 200px; height: 200px; border-radius: 50%;
-    background: rgba(74,127,212,0.08);
-    pointer-events: none;
-  }
-
-  .features-inner { max-width: 900px; margin: 0 auto; }
-  .features-title { font-family: 'Noto Serif TC', serif; font-size: 26px; color: var(--navy); margin-bottom: 40px; }
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; text-align: left; }
-  .feature-item {
-    background: rgba(255,255,255,0.85);
-    border: 1.5px solid rgba(74,127,212,0.12);
-    border-radius: 16px; padding: 22px 20px;
-    display: flex; gap: 16px; align-items: flex-start;
-    transition: all 0.2s; backdrop-filter: blur(8px);
-  }
-  .feature-item:hover { background: #fff; border-color: rgba(74,127,212,0.3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(45,90,171,0.1); }
-  .feature-num { font-family: 'Noto Serif TC', serif; font-size: 28px; font-weight: 700; color: var(--blue2); opacity: 0.6; flex-shrink: 0; line-height: 1; margin-top: 2px; }
-  .feature-text strong { display: block; color: var(--navy); font-size: 15px; margin-bottom: 6px; }
-  .feature-text span { color: var(--text-light); font-size: 13px; line-height: 1.7; }
-
-  /* -- PLANS -- */
-  .plans-section {
-    padding: 80px 24px 80px;
-    text-align: center;
-    background: linear-gradient(180deg, #0f1f42 0%, #1a3260 60%, #0f1f42 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .plans-section::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 70px;
-    background: linear-gradient(170deg, #f0f5ff 0%, #e0ecff 100%);
-    clip-path: ellipse(55% 100% at 50% 0%);
-    pointer-events: none;
-  }
-  .plans-section::after {
-    content: '';
-    position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 300px; border-radius: 50%;
-    background: rgba(74,127,212,0.08);
-    pointer-events: none;
-  }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .plans-title { font-family: 'Noto Serif TC', serif; font-size: 28px; color: #fff; margin-bottom: 8px; }
-  .plans-sub { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 40px; }
-
-  .plan-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 32px 28px;
-    border: 1.5px solid rgba(26,39,68,0.1);
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: left;
-    z-index: 1;
-  }
-  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,39,68,0.1); }
-  .plan-card.featured { border-color: var(--blue); box-shadow: 0 8px 32px rgba(59,95,160,0.15); }
-
-  .plan-badge {
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--blue); color: #fff;
-    font-size: 12px; font-weight: 700; padding: 4px 16px;
-    border-radius: 20px; letter-spacing: 1px; white-space: nowrap;
-  }
-  .plan-promo-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #e8400c, #ff6b35);
-    color: #fff; font-size: 11px; font-weight: 700;
-    padding: 3px 10px; border-radius: 20px; letter-spacing: 1px;
-    margin-bottom: 8px;
-    animation: promoPulse 2s ease-in-out infinite;
-  }
-  @keyframes promoPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(232,64,12,0.4); }
-    50% { box-shadow: 0 0 0 6px rgba(232,64,12,0); }
-  }
-  .plan-price-old { font-size: 14px; color: var(--text-light); text-decoration: line-through; margin-bottom: 2px; }
-  .plan-price-new { font-family: 'Noto Serif TC', serif; font-size: 28px; color: #e8400c; font-weight: 700; margin-bottom: 6px; }
-  .plan-price-new span { font-size: 14px; font-weight: 400; color: var(--text-light); }
-
-  .plan-top { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cream); }
-  .plan-name { font-size: 13px; color: var(--blue); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px; }
-  .plan-price { font-family: 'Noto Serif TC', serif; font-size: 28px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
-  .plan-price span { font-size: 14px; font-weight: 400; color: var(--text-light); }
-  .plan-hint { font-size: 13px; color: var(--text-light); line-height: 1.6; }
-  .plan-list { list-style: none; margin-bottom: 24px; }
-  .plan-list li { font-size: 14px; color: var(--text); padding: 7px 0; border-bottom: 1px solid rgba(26,39,68,0.05); }
-  .plan-list li:last-child { border-bottom: none; }
-
-  .plan-btn {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    border-radius: 50px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none;
-    border: 2px solid rgba(26,39,68,0.15);
-    color: var(--navy);
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-  }
-  .plan-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .plan-btn.line-green { background: #06C755; color: #fff; border-color: #06C755; }
-  .plan-btn.line-green:hover { background: #05a847; border-color: #05a847; }
-
-  /* -- MODAL -- */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(26,39,68,0.6); backdrop-filter: blur(4px);
-    z-index: 200; align-items: center; justify-content: center; padding: 24px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: #fff; border-radius: 20px;
-    max-width: 680px; width: 100%; max-height: 85vh; overflow-y: auto;
-    position: relative; animation: modalIn 0.3s ease;
-  }
-  .modal-close {
-    position: sticky; top: 16px; float: right; margin: 16px 16px 0 0;
-    width: 36px; height: 36px; background: var(--cream); border: none;
-    border-radius: 50%; cursor: pointer; font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text); z-index: 10; transition: background 0.2s;
-  }
-  .modal-close:hover { background: var(--light-blue); }
-  .modal-content { padding: 48px 40px 40px; }
-  .modal-body { font-size: 15px; line-height: 1.9; color: var(--text); }
-  .modal-body p { margin-bottom: 16px; }
-
-  /* -- FOOTER -- */
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-  footer strong { color: rgba(255,255,255,0.8); }
-
-  /* -- ANIMATIONS -- */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.96) translateY(12px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  /* -- RESPONSIVE -- */
-  @media (max-width: 600px) {
-    .nav-tabs { display: none; }
-    .hero h1 { font-size: 30px; }
-    .modal-content { padding: 32px 20px 24px; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>口袋營養獅 Co-Dare｜線上碩士級營養諮詢</title>
+<meta name="description" content="口袋營養獅 Co-Dare，讓專業碩士級營養師，幫您找到屬於自己的健康節奏。提供線上一對一營養諮詢、飲食調整、體態管理課程。">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="口袋營養獅 Co-Dare｜線上碩士級營養諮詢">
+<meta property="og:description" content="口袋營養獅 Co-Dare，讓專業碩士級營養師，幫您找到屬於自己的健康節奏。提供線上一對一營養諮詢、飲食調整、體態管理課程。">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/index.html">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/assets/logo.png">
+<meta property="og:site_name" content="口袋營養獅 Co-Dare">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="口袋營養獅 Co-Dare｜線上碩士級營養諮詢">
+<meta name="twitter:description" content="口袋營養獅 Co-Dare，讓專業碩士級營養師，幫您找到屬於自己的健康節奏。">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/assets/logo.png">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "口袋營養獅 Co-Dare",
+  "alternateName": "Co-Dare",
+  "description": "口袋營養獅 Co-Dare，讓專業碩士級營養師，幫您找到屬於自己的健康節奏。提供線上一對一營養諮詢、飲食調整、體態管理課程。",
+  "url": "https://YOUR-DOMAIN.com/index.html",
+  "logo": "https://YOUR-DOMAIN.com/assets/logo.png",
+  "image": "https://YOUR-DOMAIN.com/assets/logo.png",
+  "email": "codaredietitian@gmail.com",
+  "sameAs": ["https://lin.ee/7PNqB3Y"],
+  "priceRange": "$$"
+}
+</script>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-blob1"></div>
-  <div class="hero-blob2"></div>
-  <div class="hero-blob3"></div>
-  <div class="hero-badge">CO-DARE 口袋營養獅</div>
-  <h1 id="hero-title-el">你的口袋裡，<br><span>隨時有營養師</span></h1>
-  <p class="hero-sub" id="hero-sub-el">專業碩士級團隊 · 每日飲食陪伴 · 四週看見改變</p>
-  <div class="hero-cta">
-    <a href="https://lin.ee/6FMaNUT" class="btn-line-hero">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="white"/><path d="M12 4C7.582 4 4 7.2 4 11.167c0 3.058 1.97 5.703 4.92 6.9.213.077.178.214.133.408l-.215.8c-.033.124-.124.485.428.264C11.1 18.558 15.7 15.56 17.23 13.833h-.01C18.49 12.716 20 11.05 20 11.167 20 7.2 16.418 4 12 4z" fill="#06C755"/></svg>
-      加入 LINE 好友
-    </a>
-    <button class="btn-secondary" onclick="switchSection('team'); scrollToNav()">認識我們的團隊</button>
-    <button class="btn-secondary" onclick="switchSection('team'); setTimeout(()=>{ const el=document.getElementById('pricing-section'); if(el) el.scrollIntoView({behavior:'smooth'}); },50)">課程方案</button>
-  </div>
-</section>
+<div class="intro-loader" id="intro-loader">
+  <img src="assets/logo.png" alt="口袋營養獅 Co-Dare" class="intro-logo">
+  <p class="intro-slogan">讓專業碩士級營養師，幫您找到屬於自己的健康節奏</p>
+  <span class="intro-skip">點擊畫面略過動畫</span>
+</div>
 
-<!-- NAV -->
-<nav id="main-nav">
-  <a href="#hero" class="nav-logo" onclick="scrollToHero(event)">🦁 口袋營養獅</a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchSection('team')">團隊介紹</button>
-  </div>
-  <a href="https://lin.ee/6FMaNUT"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0"></a>
-</nav>
-
-<!-- TEAM SECTION -->
-<div class="section active" id="section-team">
-  <div class="team-header">
-    <div class="section-label">OUR TEAM</div>
-    <h2 class="section-title" id="team-page-title">四位碩士級營養師，<br>全方位守護你的健康</h2>
-    <p class="section-desc" id="team-page-desc">畢業自營養學系碩士，橫跨臨床、增肌減脂、運動營養、腎臟專科等領域。</p>
-  </div>
-
-  <div id="team-dynamic-content">
-    <!-- 亮點 -->
-    <div class="about-highlights">
-      <div class="highlight-card"><div class="highlight-icon">🎓</div><div class="highlight-title">碩士級專業團隊</div><div class="highlight-desc">具備深厚學術與實務基礎</div></div>
-      <div class="highlight-card"><div class="highlight-icon">🏥</div><div class="highlight-title">跨領域背景</div><div class="highlight-desc">涵蓋臨床、業界、運動營養、增肌減脂等多元經驗</div></div>
-      <div class="highlight-card"><div class="highlight-icon">📜</div><div class="highlight-title">多項專業證照</div><div class="highlight-desc">全員持有營養師高考合格證照，並具備腎臟專科營養師、CTSSN 運動營養等認證</div></div>
-      <div class="highlight-card"><div class="highlight-icon">💬</div><div class="highlight-title">每日陪伴式諮詢</div><div class="highlight-desc">不只是月諮詢，而是每天飲食回饋 + 每週數據追蹤，讓你每一餐都有人陪著走</div></div>
-    </div>
-
-    <!-- 專長標籤 -->
-    <div class="expertise-section">
-      <div class="expertise-inner">
-        <div class="section-label" style="margin-bottom:20px">EXPERTISE</div>
-        <h3 class="expertise-title">我們擅長的領域</h3>
-        <div class="expertise-tags">
-          <span class="exp-tag">🔥 增肌減脂</span>
-          <span class="exp-tag">🏋️ 運動營養</span>
-          <span class="exp-tag">🫀 腎臟專科飲食</span>
-          <span class="exp-tag">📉 三高慢性病調整</span>
-          <span class="exp-tag">💊 保健品諮詢</span>
-          <span class="exp-tag">🥗 均衡飲食規劃</span>
-          <span class="exp-tag">⚖️ 體重管理</span>
-          <span class="exp-tag">🔬 健檢紅字改善</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 服務流程 -->
-    <div class="features-section">
-      <div class="features-inner">
-        <div class="section-label" style="margin-bottom:20px;background:rgba(45,90,171,0.1);color:var(--blue)">HOW WE WORK</div>
-        <h3 class="features-title">我們怎麼陪你改變</h3>
-        <div class="features-grid">
-          <div class="feature-item"><div class="feature-num">01</div><div class="feature-text"><strong>課程開始當天</strong><span>確認基本資料、飲食習慣與目標，訂定專屬熱量與份數計畫，提供教材</span></div></div>
-          <div class="feature-item"><div class="feature-num">02</div><div class="feature-text"><strong>客製化菜單</strong><span>根據你的飲食喜好與限制，在課程開始一週內提供專屬菜單</span></div></div>
-          <div class="feature-item"><div class="feature-num">03</div><div class="feature-text"><strong>每日飲食回饋</strong><span>平日每天由專屬營養師針對前一天飲食給予建議，即時調整不迷路</span></div></div>
-          <div class="feature-item"><div class="feature-num">04</div><div class="feature-text"><strong>每週身體數據追蹤</strong><span>每週追蹤體重、體脂等數據，確認目標進度，必要時即時調整策略</span></div></div>
-          <div class="feature-item"><div class="feature-num">05</div><div class="feature-text"><strong>兩次視訊/電話諮詢</strong><span>每期第二週與第四週各一次，每次約 30～40 分鐘深度溝通</span></div></div>
-          <div class="feature-item"><div class="feature-num">06</div><div class="feature-text"><strong>精華線上教材</strong><span>含六大類食物估算寶典，受用終身</span></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 課程方案 -->
-    <div class="plans-section" id="pricing-section">
-      <div class="section-label" style="margin-bottom:20px;background:rgba(255,255,255,0.15);color:#fff;">PRICING</div>
-      <h3 class="plans-title">課程方案</h3>
-      <p class="plans-sub">一期四週，每月訂閱制</p>
-      <div class="plans-grid">
-
-        <!-- 新手入門 -->
-        <div class="plan-card">
-          <div class="plan-top">
-            <div class="plan-promo-badge">🔥 限時特惠</div>
-            <div class="plan-name">新手入門</div>
-            <div class="plan-price-old">NT$1,000</div>
-            <div class="plan-price-new">NT$0 <span>/一日體驗</span></div>
-            <div class="plan-hint">適合從未接觸過營養觀念的你</div>
-          </div>
-          <ul class="plan-list">
-            <li>✓ 線上教材提供</li>
-            <li>✓ 六大類食物估算寶典</li>
-            <li>✓ 飲食/營養問題答復</li>
-            <li>✓ 熱量/份數評估</li>
-          </ul>
-          <a href="https://codare2026.github.io/codare-signup/" class="plan-btn" target="_blank">點我報名</a>
-        </div>
-
-        <!-- 全視角初階（最受歡迎） -->
-        <div class="plan-card featured">
-          <div class="plan-badge">最受歡迎</div>
-          <div class="plan-top">
-            <div class="plan-promo-badge">🔥 限時特惠</div>
-            <div class="plan-name">全視角初階</div>
-            <div class="plan-price-old">NT$8,000</div>
-            <div class="plan-price-new">NT$6,000 <span>/期</span></div>
-            <div class="plan-hint">有明確目標，想增肌減脂、改善健檢紅字</div>
-          </div>
-          <ul class="plan-list">
-            <li>✓ 線上教材 + 初階課程 4 堂</li>
-            <li>✓ 每日飲食拍照回饋</li>
-            <li>✓ 每週身體數據追蹤</li>
-            <li>✓ 客製化菜單</li>
-            <li>✓ 兩次視訊/電話諮詢</li>
-          </ul>
-          <a href="https://codare2026.github.io/codare-signup/" class="plan-btn line-green" target="_blank">點我報名</a>
-        </div>
-
-        <!-- 企業團體 -->
-        <div class="plan-card">
-          <div class="plan-top">
-            <div class="plan-name">企業團體方案</div>
-            <div class="plan-hint">促進健康職場，團體報名享完整課程</div>
-          </div>
-          <ul class="plan-list">
-            <li>✓ 全視角初階全部內容</li>
-            <li>✓ 團體報名優惠價格</li>
-            <li>✓ 企業健康講座可加購</li>
-          </ul>
-          <div style="text-align:center;">
-            <p style="font-size:13px;color:#6b6b6b;margin-bottom:8px;">加入 LINE 專人聯繫</p>
-            <a href="https://lin.ee/6FMaNUT" style="display:inline-block;">
-              <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0">
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
+<div class="topbar">
+  <div class="container">
+    <span><span class="icon icon-sm" data-icon="leaf" style="vertical-align:-3px;margin-right:4px;"></span>讓專業碩士級營養師，幫您找到屬於自己的健康節奏</span>
+    <div><a href="https://lin.ee/7PNqB3Y" target="_blank" rel="noopener">加入官方 LINE 諮詢 →</a></div>
   </div>
 </div>
 
-<!-- 團隊卡片（由 JS 動態產生） -->
-<div id="team-grid" class="team-grid" style="display:none"></div>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="口袋營養獅 Co-Dare"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html" class="active">首頁</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="services.html">服務項目</a></li>
+        <li><a href="pricing.html">方案價目</a></li>
+        <li><a href="articles.html">健康專欄</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="https://codare2026.github.io/codare-client/" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span>學員登入</span></a>
+      <a href="https://codare2026.github.io/codare-signup/" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span>立即報名</span></a>
+    </div>
+    <button class="menu-toggle" aria-label="開啟選單"><span class="icon" data-icon="menu"></span></button>
+  </div>
+</header>
 
-<!-- FOOTER -->
-<footer>
-  <strong>Co-Dare 口袋營養獅</strong><br>
-  專業碩士級營養師團隊 · 線上飲食諮詢服務<br>
-  <span id="footer-line-text">有任何問題，歡迎加入官方 LINE 與我們聊聊 🦁</span>
-</footer>
+<!-- Hero -->
+<section class="hero" style="padding-bottom:130px;">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-eyebrow"><span class="icon icon-sm" data-icon="heartpulse"></span> 陪你找回身體的節奏感</span>
+      <h1>讓專業<span>碩士級營養師</span><br>幫您找到屬於自己的<br>健康節奏</h1>
+      <p class="lead">口袋營養獅 Co-Dare，把專業營養諮詢裝進你的口袋。透過線上一對一諮詢，量身打造飲食與生活習慣調整計畫，陪你走得穩、走得久。</p>
+      <div class="hero-cta">
+        <a href="https://codare2026.github.io/codare-signup/" target="_blank" rel="noopener" class="btn btn-primary">立即預約諮詢</a>
+        <a href="https://lin.ee/7PNqB3Y" target="_blank" rel="noopener" class="btn btn-line"><span class="icon icon-sm" data-icon="chat"></span> 加入官方 LINE</a>
+        <a href="about.html" class="btn btn-outline">認識我們的團隊</a>
+      </div>
+    </div>
+    <div class="hero-visual float-slow">
+      <img src="assets/logo.png" alt="口袋營養獅吉祥物">
+    </div>
+  </div>
+  <span class="deco-leaf float-slow" style="top:14%;left:6%;" data-icon="leaf"></span>
+  <span class="deco-leaf float-slow2" style="bottom:10%;left:14%;" data-icon="leaf"></span>
+</section>
 
+<!-- Quick strip -->
+<div class="quick-strip">
+  <div class="container quick-cards">
+    <a href="https://codare2026.github.io/codare-signup/" target="_blank" rel="noopener" class="quick-card">
+      <div class="quick-icon"><span class="icon" data-icon="clipboard"></span></div>
+      <div><h3>線上報名</h3><p>填寫表單，開啟你的營養旅程</p></div>
+    </a>
+    <a href="https://codare2026.github.io/codare-client/" target="_blank" rel="noopener" class="quick-card">
+      <div class="quick-icon"><span class="icon" data-icon="lock"></span></div>
+      <div><h3>學員登入</h3><p>查看你的專屬諮詢紀錄與課程</p></div>
+    </a>
+    <a href="services.html" class="quick-card">
+      <div class="quick-icon"><span class="icon" data-icon="salad"></span></div>
+      <div><h3>服務項目</h3><p>了解我們提供的營養諮詢方案</p></div>
+    </a>
+  </div>
+</div>
+
+<!-- Expertise -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Expertise</span>
+      <h2>我們擅長的領域</h2>
+      <p>橫跨臨床、業界、運動營養、腎臟專科等多元背景，全方位守護你的健康。</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="service-card">
+        <span class="icon" data-icon="flame"></span>
+        <h3 style="font-size:16.5px;">增肌減脂</h3>
+        <p>依訓練與飲食習慣，打造專屬增肌減脂計畫。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="dumbbell"></span>
+        <h3 style="font-size:16.5px;">運動營養</h3>
+        <p>提升運動表現，加速訓練後恢復效率。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="droplet"></span>
+        <h3 style="font-size:16.5px;">腎臟專科飲食</h3>
+        <p>提供腎臟病友專業且安全的飲食調整指導。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="trenddown"></span>
+        <h3 style="font-size:16.5px;">三高慢性病調整</h3>
+        <p>血糖、血壓、血脂的日常飲食管理策略。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="pill"></span>
+        <h3 style="font-size:16.5px;">保健品諮詢</h3>
+        <p>破解保健食品迷思，聰明挑選真正需要的。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="salad"></span>
+        <h3 style="font-size:16.5px;">均衡飲食規劃</h3>
+        <p>建立長期可持續、不極端的健康飲食習慣。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="scale"></span>
+        <h3 style="font-size:16.5px;">體重管理</h3>
+        <p>科學化數據追蹤，穩健達成理想體態。</p>
+      </div>
+      <div class="service-card">
+        <span class="icon" data-icon="microscope"></span>
+        <h3 style="font-size:16.5px;">健檢紅字改善</h3>
+        <p>揪出異常數值背後的飲食成因並對症調整。</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="services.html" class="btn btn-outline">查看完整服務項目</a>
+      <a href="pricing.html" class="btn btn-primary">查看完整方案與價目</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<div class="cta-band">
+  <h2>準備好開始你的健康節奏了嗎？</h2>
+  <p>先加入官方 LINE，讓營養師了解你的需求，或直接線上報名預約諮詢時段。</p>
+  <div class="hero-cta">
+    <a href="https://codare2026.github.io/codare-signup/" target="_blank" rel="noopener" class="btn" style="background:#fff;color:var(--teal-dark);">立即線上報名</a>
+    <a href="https://lin.ee/7PNqB3Y" target="_blank" rel="noopener" class="btn btn-outline">加入官方 LINE</a>
+  </div>
+</div>
+
+<!-- About preview -->
+<section class="bg-mint">
+  <div class="container split">
+    <div class="hero-visual float-slow2">
+      <img src="assets/logo.png" alt="口袋營養獅團隊">
+    </div>
+    <div>
+      <span class="section-tag">About Co-Dare</span>
+      <h2 style="font-size:30px;font-weight:900;color:var(--teal-deep);margin-bottom:16px;">把專業，裝進你的口袋</h2>
+      <p style="color:var(--text-soft);margin-bottom:24px;">口袋營養獅由一群碩士級營養師組成，相信健康不該只有一種標準答案。我們用陪伴取代說教，用數據取代猜測，幫助每一位學員找到真正適合自己的健康節奏。</p>
+      <a href="about.html" class="btn btn-primary">了解更多團隊故事</a>
+    </div>
+  </div>
+</section>
+
+<!-- Articles preview -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Health Column</span>
+      <h2>健康專欄</h2>
+      <p>由營養師團隊撰寫，把艱澀的營養學說成你聽得懂的日常小知識。</p>
+    </div>
+    <div class="articles-grid">
+      <a href="article.html?slug=tcm-metabolism-rhythm" class="article-card">
+        <div class="article-thumb"><span class="icon icon-lg" data-icon="salad"></span></div>
+        <div class="article-body">
+          <span class="article-tag">飲食觀念</span>
+          <h3>三餐不定時？先搞懂你的代謝節奏再說</h3>
+          <span class="article-date">2026-07-18</span>
+        </div>
+      </a>
+      <a href="article.html?slug=smart-carb-choice" class="article-card">
+        <div class="article-thumb"><span class="icon icon-lg" data-icon="wheat"></span></div>
+        <div class="article-body">
+          <span class="article-tag">體態管理</span>
+          <h3>減醣不是不吃澱粉，營養師教你聰明選碳水</h3>
+          <span class="article-date">2026-07-10</span>
+        </div>
+      </a>
+      <a href="article.html?slug=how-much-water-daily" class="article-card">
+        <div class="article-thumb"><span class="icon icon-lg" data-icon="droplet"></span></div>
+        <div class="article-body">
+          <span class="article-tag">日常保養</span>
+          <h3>每天要喝多少水？破解喝水迷思</h3>
+          <span class="article-date">2026-07-02</span>
+        </div>
+      </a>
+      <a href="article.html?slug=cortisol-and-weight" class="article-card">
+        <div class="article-thumb"><span class="icon icon-lg" data-icon="brain"></span></div>
+        <div class="article-body">
+          <span class="article-tag">身心健康</span>
+          <h3>壓力大也會胖？認識皮質醇與體重的關係</h3>
+          <span class="article-date">2026-06-25</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="articles.html" class="btn btn-outline">探索更多健康知識</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="logo-chip"><img src="assets/logo.png" alt="口袋營養獅"></span>
+          <span>口袋營養獅 Co-Dare</span>
+        </div>
+        <p>讓專業碩士級營養師，幫您找到屬於自己的健康節奏。線上營養諮詢，把專業裝進口袋，隨時陪伴您的健康旅程。</p>
+        <div class="social-row">
+          <a href="https://lin.ee/7PNqB3Y" target="_blank" rel="noopener" title="LINE"><span class="icon icon-sm" data-icon="chat"></span></a>
+        </div>
+      </div>
+      <div>
+        <h4>網站導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="services.html">服務項目</a></li>
+          <li><a href="pricing.html">方案價目</a></li>
+          <li><a href="articles.html">健康專欄</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>快速連結</h4>
+        <ul>
+          <li><a href="https://codare2026.github.io/codare-signup/" target="_blank" rel="noopener">線上報名</a></li>
+          <li><a href="https://codare2026.github.io/codare-client/" target="_blank" rel="noopener">學員登入</a></li>
+          <li><a href="https://lin.ee/7PNqB3Y" target="_blank" rel="noopener">官方 LINE</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li>服務時間　週一至週五 9:00–18:00</li>
+          <li>諮詢方式　線上視訊／圖文諮詢</li>
+          <li><a href="mailto:codaredietitian@gmail.com">codaredietitian@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 口袋營養獅 Co-Dare. All Rights Reserved.</span>
+      <span>本網站為原型展示版本，實際內容以正式上線為準。</span>
+    </div>
+  </div>
+</footer><script src="assets/icons.js"></script>
+<script src="assets/script.js"></script>
 <script>
-function switchSection(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('section-' + name).classList.add('active');
-  const tabs = document.querySelectorAll('.nav-tab');
-  if (name === 'team') tabs[0].classList.add('active');
-}
-function scrollToNav() {
-  document.getElementById('main-nav').scrollIntoView({ behavior: 'smooth' });
-}
-function scrollToHero(e) {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+(function () {
+  var loader = document.getElementById('intro-loader');
+  if (!loader) return;
+  document.body.style.overflow = 'hidden';
+  function hideLoader() {
+    loader.classList.add('intro-hide');
+    document.body.style.overflow = '';
+    setTimeout(function () { loader.style.display = 'none'; }, 650);
+  }
+  loader.addEventListener('click', hideLoader);
+  setTimeout(hideLoader, 2600);
+})();
 </script>
 </body>
 </html>
